@@ -1,0 +1,37 @@
+@import "../../../../defaultStyles";
+
+.post {
+display: flex;
+  border: 1px solid $myBlue;
+  border-radius: 5px;
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+
+.postHeader {
+  padding: 3px;
+
+  .imgWrapper {
+    height: 60px;
+    width: 60px;
+    position: relative;
+
+
+    .img {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+      border: 1px solid $myBlue;
+      border-radius: 50%;
+    }
+  }
+}
+
+.postContent {
+  width: 100%;
+}

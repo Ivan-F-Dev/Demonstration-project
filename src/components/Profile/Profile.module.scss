@@ -1,0 +1,45 @@
+@import "../../defaultStyles";
+
+.profile {
+    display: flex;
+}
+
+.leftColumn + .rightColumn {
+    margin-left: 15px;
+}
+
+.leftColumn {
+    width: 230px;
+
+    .leftColumnItem {
+        background-color: $myWhite;
+        border-radius: 5px;
+        .avatarWrapper {
+            width: 200px;
+            padding: 15px;
+            .avatar {
+                img {
+                    width: 100%;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+}
+
+.rightColumn {
+    width: 100%;
+
+    .rightColumnItem {
+        background-color: $myWhite;
+        border-radius: 5px;
+    }
+    .rightColumnItem + .rightColumnItem {
+        margin-top: 15px;
+    }
+}
+
+
+
+
+
