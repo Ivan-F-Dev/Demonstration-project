@@ -1,4 +1,74 @@
 @import "../../defaultStyles";
-.header {
 
+.header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+
+
+  .leftHeaderPart {
+    display: flex;
+
+    .logoWrapper {
+      overflow: hidden;
+      position: relative;
+      width: 75px;
+      height: 50px;
+
+      .logo {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        object-fit: cover;
+
+      }
+    }
+
+    .textWrapper {
+      display: flex;
+      align-items: center;
+
+      .text {
+        display: inline;
+        text-transform: uppercase;
+        font-size: 25px;
+        font-family: "Arial Rounded MT";
+      }
+    }
+  }
+
+  .rightHeaderPart {
+    display: flex;
+    align-items: center;
+    .name {
+      font-family: "Arial Rounded MT";
+      font-size: 20px;
+      padding: 0 10px;
+    }
+
+    .photoWrapper {
+      overflow: hidden;
+      position: relative;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: #5181b8 solid 1px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        object-fit: cover;
+      }
+    }
+
+    .burger {
+padding: 0 10px;
+    }
+  }
 }
