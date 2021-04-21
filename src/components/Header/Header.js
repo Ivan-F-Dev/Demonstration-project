@@ -2,6 +2,8 @@ import React from 'react'
 import s from './Header.module.scss';
 import logo from './../../img/logo.svg';
 import ava from './../../img/AvatarCat.jpg';
+import SimpleMenu from "../../MUI/MIU SimpleMenu";
+import Button from '@material-ui/core/Button';
 
 const Header = () => (
     <div className={s.header}>
@@ -14,9 +16,9 @@ const Header = () => (
             </div>
         </div>
         <div className={s.rightHeaderPart}>
-            <div className={s.name}>Ivan</div>
+            <div className={s.name}><Button>Ivan</Button></div>
             <div className={s.photoWrapper}><img src={ava} alt=""/></div>
-            <div className={s.burger}>X</div>
+            <div className={s.burger}><SimpleMenu/></div>
         </div>
 
     </div>
