@@ -1,11 +1,36 @@
 @import "../../defaultStyles";
 
 .messages {
+  display: grid;
+  grid-template-columns: 4fr 6fr;
 
+  .availableChats + .currentChat {
+    margin-left: 20px;
+  }
+
+  .availableChats {
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .currentChat {
+    background-color: white;
+    border: #5181b8 solid 1px;
+    border-radius: 5px;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 1fr 9fr 2fr;
+
+    .chatHeader {
+
+    }
+    .chatContent {
+      border-top: #5181b8 solid 1px;
+      border-bottom: #5181b8 solid 1px;
+
+    }
+    .chatInput {
+
+    }
+  }
 }
-
-
-
-
-
-

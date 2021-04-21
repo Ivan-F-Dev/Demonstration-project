@@ -1,0 +1,36 @@
+@import "../../../defaultStyles";
+
+.chatHeader {
+  display: grid;
+grid-template-columns: 8fr 1fr;
+  .imgArea {
+    padding: 3px;
+
+    .imgWrapper {
+      height: 40px;
+      width: 40px;
+      position: relative;
+
+      .img {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        object-fit: cover;
+        top: 0;
+        left: 0;
+        border: 1px solid $myBlue;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .chatHeaderContent {
+display: flex;
+    justify-content: center;
+    .name {
+      font-size: 30px;
+    }
+  }
+}
+
+

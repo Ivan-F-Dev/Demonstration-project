@@ -1,6 +1,6 @@
-@import "../../../../defaultStyles";
+@import "../../../defaultStyles";
 
-.post {
+.MessageItem {
 display: flex;
   border: 1px solid $myBlue;
   border-radius: 5px;
@@ -9,13 +9,11 @@ display: flex;
   }
 }
 
-.postHeader + .postContent {
-  margin-left: 20px;
-}
 
-.postHeader {
+.imgArea {
   padding: 3px;
-
+display: flex;
+  align-items: center;
   .imgWrapper {
     height: 60px;
     width: 60px;
@@ -35,13 +33,15 @@ display: flex;
   }
 }
 
-.postContent {
+.MessageItemContent {
   width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 2fr;
 
   .name {
-
+    padding: 2px;
   }
   .text {
-
+    padding: 2px;
   }
 }

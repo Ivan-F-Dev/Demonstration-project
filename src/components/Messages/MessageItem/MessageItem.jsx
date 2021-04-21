@@ -1,15 +1,16 @@
 import React from 'react'
-import s from './Post.module.scss';
+import s from './MessageItem.module.scss';
+import AvatarCat from "./../../../img/AvatarCat.jpg"
 
-const Post = (props) => {
+const MessageItem = (props) => {
     return (
-        <div className={s.post}>
-            <div className={s.postHeader}>
+        <div className={s.MessageItem}>
+            <div className={s.imgArea}>
                 <div className={s.imgWrapper}>
                     <img src={props.img} className={s.img}/>
                 </div>
             </div>
-            <div className={s.postContent}>
+            <div className={s.MessageItemContent}>
                 <div className={s.name}>
                     {props.name}
                 </div>
@@ -21,4 +22,5 @@ const Post = (props) => {
     )
 }
 
-export default Post;
+
+export default MessageItem;

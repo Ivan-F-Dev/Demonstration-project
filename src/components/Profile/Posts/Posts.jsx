@@ -1,6 +1,7 @@
 import React from 'react'
 import s from './Posts.module.scss';
 import Post from "./Post/Post";
+import AvatarCat from "./../../../img/AvatarCat.jpg"
 
 const Posts = () => {
     return (
@@ -9,9 +10,9 @@ const Posts = () => {
                 My posts
             </div>
             <div className={s.postsWrapper}>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Post img={AvatarCat} name='Ivan' content='Post Content'/>
+                <Post img={AvatarCat} name='Ivan' content='Post Content'/>
+                <Post img={AvatarCat} name='Ivan' content='Post Content'/>
             </div>
         </div>
     )
