@@ -9,7 +9,7 @@ const ChatHeader = (props) => {
             </div>
             <div className={s.imgArea}>
                 <div className={s.imgWrapper}>
-                    <img src={props.img} className={s.img}/>
+                    <img src={props.img} className={s.img} alt="фото собеседника"/>
                 </div>
             </div>
         </div>

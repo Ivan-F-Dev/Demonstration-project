@@ -1,6 +1,8 @@
 @import "defaultStyles";
 .App {
     background-color: $myGray;
+    min-height: 100vh;
+
 
     .headerWrapperTop {
         background-color: $myWhite;

@@ -1,13 +1,12 @@
 import React from 'react'
 import s from './MessageItem.module.scss';
-import AvatarCat from "./../../../img/AvatarCat.jpg"
 
 const MessageItem = (props) => {
     return (
         <div className={s.MessageItem}>
             <div className={s.imgArea}>
                 <div className={s.imgWrapper}>
-                    <img src={props.img} className={s.img}/>
+                    <img src={props.img} className={s.img} alt="фото собеседника"/>
                 </div>
             </div>
             <div className={s.MessageItemContent}>
