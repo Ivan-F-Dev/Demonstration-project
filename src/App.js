@@ -8,10 +8,12 @@ import {BrowserRouter, Route,} from "react-router-dom";
 import Messages from "./components/Messages/Messages";
 import Friends from "./components/Friends/Friends";
 import FindUsers from "./components/FindUsers/FindUsers";
-
+import {theme} from "./MUI/MIU Styles";
+import {MuiThemeProvider} from "@material-ui/core";
 
 const App = () => (
-        <BrowserRouter>
+    <BrowserRouter>
+        <MuiThemeProvider theme={theme}>
             <div className={s.App}>
                 <div className={s.headerWrapperTop}>
                     <div className={s.headerWrapper}>
@@ -31,7 +33,8 @@ const App = () => (
                     </div>
                 </div>
             </div>
-        </BrowserRouter>
+        </MuiThemeProvider>
+    </BrowserRouter>
 )
 
 export default App;

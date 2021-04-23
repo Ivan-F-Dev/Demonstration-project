@@ -15,32 +15,31 @@ const Navbar = () => {
         <div className={s.navBar}>
             <div>
                 <NavLink className={s.link} to="/profile">
-                    <Button onClick={() => setLinkState(1)} className={linkState === 1 ? classes.rootActive : classes.root}>Profile</Button>
+                    <Button fullWidth={true} className={classes.root} color={linkState === 1 ? "primary" : "default"} onClick={() => setLinkState(1)}>Profile</Button>
                 </NavLink>
             </div>
             <div>
                 <NavLink className={s.link} to="/messages">
-                    <Button onClick={() => setLinkState(2)} className={linkState === 2 ? classes.rootActive : classes.root}>Messages</Button>
+                    <Button fullWidth={true} className={classes.root} color={linkState === 2 ? "primary" : "default"} onClick={() => setLinkState(2)}>Messages</Button>
                 </NavLink>
             </div>
             <div>
                 <NavLink className={s.link} to="/friends">
-                    <Button onClick={() => setLinkState(3)} className={linkState === 3 ? classes.rootActive : classes.root}>Friends</Button>
+                    <Button fullWidth={true} className={classes.root} color={linkState === 3 ? "primary" : "default"} onClick={() => setLinkState(3)}>Friends</Button>
                 </NavLink>
             </div>
             <div>
                 <NavLink className={s.link} to="/findUsers">
-                    <Button onClick={() => setLinkState(4)} className={linkState === 4 ? classes.rootActive : classes.root}>Find Users</Button>
+                    <Button fullWidth={true} className={classes.root} color={linkState === 4 ? "primary" : "default"} onClick={() => setLinkState(4)}>Find Users</Button>
                 </NavLink>
             </div>
             <div>
                 <NavLink className={s.link} to="/test">
-                    <Button onClick={() => setLinkState(5)} className={linkState === 5 ? classes.rootActive : classes.root}>Test</Button>
+                    <Button fullWidth={true} className={classes.root} color={linkState === 5 ? "primary" : "default"} onClick={() => setLinkState(5)}>Test</Button>
                 </NavLink>
             </div>
         </div>
     )
 }
-
 
 export default Navbar;
