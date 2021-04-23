@@ -3,7 +3,10 @@ import { createMuiTheme, makeStyles } from "@material-ui/core";
 export const theme = createMuiTheme({
     typography: {
         button: {
-            textTransform: "none"
+            textTransform: "none",
+            padding: '0 5px',
+            justifyContent: 'start',
+            fontWeight: "normal"
         }
     },
     palette: {
@@ -17,10 +20,6 @@ export const theme = createMuiTheme({
 });
 
 export const useStylesNavBar = makeStyles({
-    root: {
-        padding: '0 5px',
-        justifyContent: 'start',
-        fontWeight: "normal"
-    },
+
 });
 //#5181b8
