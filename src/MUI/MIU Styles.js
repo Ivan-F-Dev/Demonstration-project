@@ -1,6 +1,11 @@
-import {createMuiTheme, makeStyles} from "@material-ui/core";
+import { createMuiTheme, makeStyles } from "@material-ui/core";
 
 export const theme = createMuiTheme({
+    typography: {
+        button: {
+            textTransform: "none"
+        }
+    },
     palette: {
         primary: {
             main: '#5181b8',
@@ -15,7 +20,6 @@ export const useStylesNavBar = makeStyles({
     root: {
         padding: '0 5px',
         justifyContent: 'start',
-        textTransform: 'none',
         fontWeight: "normal"
     },
 });
