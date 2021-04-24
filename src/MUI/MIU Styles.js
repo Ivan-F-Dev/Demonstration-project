@@ -27,7 +27,9 @@ export const useStylesPaddingZero = makeStyles((theme) => ({
 export const useStylesJustifyCenter = makeStyles((theme) => ({
     root: {
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
+        borderTopLeftRadius:0,
+        borderTopRightRadius:0
     },
 }));
 //#5181b8

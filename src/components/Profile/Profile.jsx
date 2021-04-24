@@ -5,39 +5,14 @@ import AvatarCat from "../../img/AvatarCat.jpg"
 
 
 const profileState = {
+    addPost:(newPostText) => {
+        profileState.posts.push({name: "AuthorName",
+            img: {AvatarCat},
+            content: newPostText,
+            id: profileState.posts.length + 1})
+    },
     posts: [
-        {name: "ivan1",
-            img: {AvatarCat},
-            content: "post1",
-            id: 1},
-        {name: "ivan2",
-            img: {AvatarCat},
-            content: "post2",
-            id: 2},
-        {name: "ivan3",
-            img: {AvatarCat},
-            content: "post3",
-            id: 3},
-        {name: "ivan4",
-            img: {AvatarCat},
-            content: "post4",
-            id: 4},
-        {name: "ivan1",
-            img: {AvatarCat},
-            content: "post1",
-            id: 5},
-        {name: "ivan2",
-            img: {AvatarCat},
-            content: "post2",
-            id: 6},
-        {name: "ivan3",
-            img: {AvatarCat},
-            content: "post3",
-            id: 7},
-        {name: "ivan4",
-            img: {AvatarCat},
-            content: "post4",
-            id: 8}
+
     ]
 }
 
