@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import {useStylesJustifyCenter} from "./MIU Styles";
 
 export default function SimpleMenu() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -14,18 +15,14 @@ export default function SimpleMenu() {
         setAnchorEl(null);
     };
 
+    const classes = useStylesJustifyCenter()
+
     return (
         <div>
-            <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                Menu
+            <Button className={classes.root} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                MENU
             </Button>
-            <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-            >
+            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
