@@ -18,14 +18,14 @@ const Posts = (props) => {
 
     const classes = useStyles()
 
-    let mapPosts = props.profileState.posts.map(el =>
+    let mapPosts = props.posts.map(el =>
         <Post img={el.img} name={el.name} content={el.content} key={el.id}/>
     )
 
     const [state, setState] = useState("")
 
     const callAddPost = () => {
-        state && props.profileState.addPost(state)
+        state && props.addPost(state)
         setState("")
     }
 

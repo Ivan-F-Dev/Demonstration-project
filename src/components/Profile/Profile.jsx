@@ -3,23 +3,9 @@ import s from './Profile.module.scss';
 import Posts from "./Posts/Posts.jsx";
 import AvatarCat from "../../img/AvatarCat.jpg"
 
-
-const profileState = {
-    addPost:(newPostText) => {
-        profileState.posts.push({name: "AuthorName",
-            img: {AvatarCat},
-            content: newPostText,
-            id: profileState.posts.length + 1})
-    },
-    posts: [
-
-    ]
-}
-
 const Profile = (props) => {
     return (
         <div className={s.profile}>
-
             <div className={s.leftColumn}>
                 <div className={s.leftColumnItem}>
                     <div className={s.avatarWrapper}>
@@ -46,7 +32,7 @@ const Profile = (props) => {
                     <div>AddPostInput</div>
                 </div>
                 <div className={s.rightColumnItem}>
-                    <Posts profileState={profileState}/>
+                    <Posts posts={props.profileState.posts} addPost={props.addPost}/>
                 </div>
             </div>
         </div>
