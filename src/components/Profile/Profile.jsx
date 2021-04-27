@@ -32,7 +32,7 @@ const Profile = (props) => {
                     <div>AddPostInput</div>
                 </div>
                 <div className={s.rightColumnItem}>
-                    <Posts posts={props.profileState.posts} addPost={props.addPost}/>
+                    <Posts/>
                 </div>
             </div>
         </div>

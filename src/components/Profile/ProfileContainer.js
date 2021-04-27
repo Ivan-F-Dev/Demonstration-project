@@ -1,6 +1,8 @@
-import Profile from "./Profile";
-import {addPost} from "../../store/reducers/profilePageReducer";
+//заменил на хуки на оставил для наглядности
+/*
 import {connect} from "react-redux";
+import Profile from "./Profile";
+import {addPost} from "../../store/actionCreators";
 
 let mapStateToProps = (state) => {
     return {
@@ -10,10 +12,10 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        addPost: (newPostText) => {
-            dispatch(addPost(newPostText))
+        addPost: (payload) => {
+            dispatch(addPost(payload))
         }
     }
 }
 
-export const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile)
+export const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile)*/

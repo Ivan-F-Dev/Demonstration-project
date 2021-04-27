@@ -1,5 +1,5 @@
-//PROPERTIES 'TYPE' FOR ACTIONS
-const ADD_POST = "ADD_POST"
+import {ADD_POST} from "../actionTypes";
+
 //INITIAL STATE FOR REDUCER
 const initialState = {
     posts: [
@@ -10,7 +10,7 @@ const initialState = {
 export let profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            const newPostText = action.newPostText
+            const newPostText = action.payload
             return {
                 ...state,
                 posts: [...state.posts, {id: state.posts.length + 1, content: newPostText, name: "AuthorName", img: null}],
@@ -20,8 +20,7 @@ export let profileReducer = (state = initialState, action) => {
     }
 }
 
-//ACTION CREATORS
-export const addPost = (newPostText) => ({type: ADD_POST, newPostText});
+
 
 
 

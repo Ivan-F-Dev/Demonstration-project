@@ -1,39 +1,42 @@
 import React, {useState} from 'react'
+import {useDispatch, useSelector} from "react-redux";
+import {Button, TextField, makeStyles} from "@material-ui/core";
 import s from './Posts.module.scss';
 import Post from "./Post/Post";
-import TextField from '@material-ui/core/TextField';
-import Button from "@material-ui/core/Button";
-import {makeStyles} from "@material-ui/core";
+import {addPost} from "../../../store/actionCreators";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         justifyContent: "center",
-        borderTopLeftRadius:0,
-        borderTopRightRadius:0
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0
     },
 }));
 
 const Posts = (props) => {
-
+    const dispatch = useDispatch()
+    const posts = useSelector(state => state.profilePage.posts)
     const classes = useStyles()
 
-    let mapPosts = props.posts.map(el =>
+    let mapPosts = posts.map(el =>
         <Post img={el.img} name={el.name} content={el.content} key={el.id}/>
     )
 
-    const [state, setState] = useState("")
+    const [localState, setLocalState] = useState("")
 
     const callAddPost = () => {
-        state && props.addPost(state)
-        setState("")
+        localState && dispatch(addPost(localState))
+        setLocalState("")
     }
 
     return (
         <div className={s.posts}>
             <div className={s.postsHeader}>
-                <TextField onChange={(event) => setState(event.target.value )}  value={state} fullWidth={true} color="primary" label="Write a new post" variant="filled"/>
-                <Button onClick={callAddPost} variant="contained" className={classes.root} color="primary" fullWidth={true}>Add post</Button>
+                <TextField onChange={(event) => setLocalState(event.target.value)} value={localState} fullWidth={true}
+                           color="primary" label="Write a new post" variant="filled"/>
+                <Button onClick={callAddPost} variant="contained" className={classes.root} color="primary"
+                        fullWidth={true}>Add post</Button>
                 My posts
             </div>
             <div className={s.postsWrapper}>
