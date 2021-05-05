@@ -36,8 +36,7 @@ const Posts = (props) => {
                 <TextField onChange={(event) => setLocalState(event.target.value)} value={localState} fullWidth={true}
                            color="primary" label="Write a new post" variant="filled"/>
                 <Button onClick={callAddPost} variant="contained" className={classes.root} color="primary"
-                        fullWidth={true}>Add post</Button>
-                My posts
+                        fullWidth={true}>Login</Button>
             </div>
             <div className={s.postsWrapper}>
                 {mapPosts}

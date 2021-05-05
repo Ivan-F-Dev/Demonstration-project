@@ -50,19 +50,20 @@
     }
 
     .photoWrapper {
+      margin: 0;
       overflow: hidden;
       position: relative;
-      width: 45px;
-      height: 45px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      border: #5181b8 solid 1px;
+      border: $myBlue solid 1px;
 
       img {
         width: 100%;
         height: 100%;
         position: absolute;
         left: 0;
-        right: 0;
+        top: 0;
         object-fit: cover;
       }
     }

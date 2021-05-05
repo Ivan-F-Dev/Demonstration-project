@@ -29,7 +29,7 @@ export const useStylesJustifyCenter = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "center",
         borderTopLeftRadius:0,
-        borderTopRightRadius:0
+        borderTopRightRadius:0,
     },
 }));
 //#5181b8
