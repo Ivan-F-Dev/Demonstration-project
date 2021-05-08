@@ -1,4 +1,10 @@
-.textField{
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
+.loginPage {
+  display: flex;
+  justify-content: center;
+
+  .formWrap {
+    width: 60%;
+    padding-top: 30px;
+  }
 }
+
