@@ -20,5 +20,9 @@ export const API = {
     logout() {
         return instance.delete('auth/login')
             .then( response => response)
+    },
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`)
+            .then(response => response.data)
     }
 }

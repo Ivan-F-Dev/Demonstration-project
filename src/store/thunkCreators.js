@@ -38,3 +38,18 @@ let response = await API.logout()
     }
     dispatch(waitingOff())
 }
+
+export const getProfile = (id) => async dispatch => {
+    dispatch(waitingOn())
+
+    let response = await API.getProfile(id)
+    /*if (response.data.resultCode === 0) {
+        dispatch(setUserData(null, null, null))
+        dispatch(isAuth(false))
+        console.log("logout is ok")
+    } else {
+        console.log("logout is fail")
+    }*/
+
+    dispatch(waitingOff())
+}

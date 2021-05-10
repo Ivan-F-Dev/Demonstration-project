@@ -2,8 +2,16 @@ import React from 'react'
 import s from './Profile.module.scss';
 import Posts from "./Posts/Posts.jsx";
 import AvatarCat from "../../img/AvatarCat.jpg"
+import {useSelector} from "react-redux";
+import {Redirect} from "react-router-dom";
 
 const Profile = (props) => {
+
+    const isAuth = useSelector(state => state.authorization.isAuth)
+
+
+    if (isAuth === false) return <Redirect to={'/login'}/>
+
     return (
         <div className={s.profile}>
             <div className={s.leftColumn}>
@@ -37,6 +45,8 @@ const Profile = (props) => {
             </div>
         </div>
     )
+
+
 }
 
 export default Profile;

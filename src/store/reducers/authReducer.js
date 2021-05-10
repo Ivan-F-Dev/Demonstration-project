@@ -1,4 +1,4 @@
-import {IS_AUTH, SET_USER_DATA, WAITING_OFF, WAITING_ON} from "../actionTypes";
+import {IS_AUTH, SET_MAIN_PROFILE, SET_USER_DATA, WAITING_OFF, WAITING_ON} from "../actionTypes";
 
 //INITIAL STATE FOR REDUCER
 const initialState = {
@@ -6,7 +6,8 @@ const initialState = {
     login: null,
     email: null,
     waiting: false,
-    isAuth: false
+    isAuth: false,
+    mainProfile: {}
 }
 //REDUCER
 export let authReducer = (state = initialState, action) => {
@@ -26,6 +27,10 @@ export let authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state, ...action.payload
+            }
+        case SET_MAIN_PROFILE:
+            return {
+                ...state, mainProfile: { ...action.payload}
             }
         default :
             return state

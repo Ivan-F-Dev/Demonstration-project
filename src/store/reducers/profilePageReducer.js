@@ -2,6 +2,7 @@ import {ADD_POST} from "../actionTypes";
 
 //INITIAL STATE FOR REDUCER
 const initialState = {
+    currentProfile: {},
     posts: [
 
     ]
