@@ -4,7 +4,7 @@ import logo from './../../img/logo.svg';
 import Button from '@material-ui/core/Button';
 import {NavLink} from "react-router-dom";
 import {makeStyles} from "@material-ui/core";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../store/thunkCreators";
 
 export const useStyles = makeStyles((theme) => ({
@@ -17,6 +17,7 @@ export const useStyles = makeStyles((theme) => ({
 const Header = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
+    const isAuth = useSelector(state => state.authorization.isAuth)
 
 
     return <div className={s.header}>
@@ -35,7 +36,9 @@ const Header = () => {
             <div className={s.photoWrapper}>
                 <img src="https://via.placeholder.com/600/92c952"  alt=""/>
             </div>
-            <div className={s.name}><NavLink className={s.link} to="/login"><Button onClick={() => dispatch(logout())} className={classes.root}>LOGOUT</Button></NavLink></div>
+            <div className={s.name}><NavLink className={s.link} to="/login">
+                {isAuth ? <Button onClick={() => dispatch(logout())} className={classes.root}>LOGOUT</Button> : <Button className={classes.root}>LOGIN</Button>}
+            </NavLink></div>
         </div>
     </div>
 }
