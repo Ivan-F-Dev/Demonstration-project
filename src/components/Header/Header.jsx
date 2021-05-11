@@ -18,7 +18,7 @@ const Header = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
     const isAuth = useSelector(state => state.authorization.isAuth)
-
+    const mainProfile = useSelector(state => state.authorization.mainProfile)
 
     return <div className={s.header}>
         <div className={s.leftHeaderPart}>
@@ -34,7 +34,7 @@ const Header = () => {
         <div className={s.rightHeaderPart}>
             <div className={s.name}><NavLink className={s.link} to="/profile"><Button className={classes.root}>IVAN</Button></NavLink></div>
             <div className={s.photoWrapper}>
-                <img src="https://via.placeholder.com/600/92c952"  alt=""/>
+                <img src={mainProfile.photos.large}  alt=""/>
             </div>
             <div className={s.name}><NavLink className={s.link} to="/login">
                 {isAuth ? <Button onClick={() => dispatch(logout())} className={classes.root}>LOGOUT</Button> : <Button className={classes.root}>LOGIN</Button>}

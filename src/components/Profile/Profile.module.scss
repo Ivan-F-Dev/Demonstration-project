@@ -11,6 +11,10 @@
 .leftColumn {
     width: 230px;
 
+    .leftColumnItem + .leftColumnItem {
+        margin-top: 15px;
+    }
+
     .leftColumnItem {
         background-color: $myWhite;
         border-radius: 5px;

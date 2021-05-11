@@ -23,6 +23,6 @@ export const API = {
     },
     getProfile(userId) {
         return instance.get(`profile/${userId}`)
-            .then(response => response.data)
+
     }
 }

@@ -7,7 +7,11 @@ const initialState = {
     email: null,
     waiting: false,
     isAuth: false,
-    mainProfile: {}
+    mainProfile: {
+        photos: {
+            large: "https://via.placeholder.com/600/92c952"
+        }
+    }
 }
 //REDUCER
 export let authReducer = (state = initialState, action) => {

@@ -1,4 +1,4 @@
-import {isAuth, setUserData, waitingOff, waitingOn} from "./actionCreators";
+import {isAuth, setMainProfile, setUserData, waitingOff, waitingOn} from "./actionCreators";
 import {API} from "../api/api";
 
 export const getMe = () => async dispatch => {
@@ -41,15 +41,12 @@ let response = await API.logout()
 
 export const getProfile = (id) => async dispatch => {
     dispatch(waitingOn())
-
     let response = await API.getProfile(id)
-    /*if (response.data.resultCode === 0) {
-        dispatch(setUserData(null, null, null))
-        dispatch(isAuth(false))
-        console.log("logout is ok")
+    if (response.status === 200) {
+        dispatch(setMainProfile(response.data))
+        console.log("getProfile is ok")
     } else {
-        console.log("logout is fail")
-    }*/
-
+        console.log("getProfile is fail")
+    }
     dispatch(waitingOff())
 }
