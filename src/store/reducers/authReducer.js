@@ -7,11 +7,7 @@ const initialState = {
     email: null,
     waiting: false,
     isAuth: false,
-    mainProfile: {
-        photos: {
-            large: "https://via.placeholder.com/600/92c952"
-        }
-    }
+    mainProfile: null
 }
 //REDUCER
 export let authReducer = (state = initialState, action) => {
@@ -33,9 +29,16 @@ export let authReducer = (state = initialState, action) => {
                 ...state, ...action.payload
             }
         case SET_MAIN_PROFILE:
-            return {
-                ...state, mainProfile: { ...action.payload}
+            if (action.payload !== null) {
+                return {
+                    ...state, mainProfile: { ...action.payload}
+                }
+            } else {
+                return {
+                    ...state, mainProfile: null
+                }
             }
+
         default :
             return state
     }

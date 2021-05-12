@@ -4,6 +4,7 @@ import {Button, makeStyles, TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {getMe, login} from "../../store/thunkCreators";
 import {Redirect} from "react-router-dom";
+import Preloader from "../../MUI/Preloader/Preloader";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 let LoginPage = (props) => {
 
     const dispatch = useDispatch()
@@ -32,28 +32,31 @@ let LoginPage = (props) => {
     const classes = useStyles()
 
     useEffect(() => {
-        if (isAuth === false)
-        dispatch(getMe(loginInput, passwordInput))
+        if (isAuth === false) {
+             dispatch(getMe())
+            console.log("LoginPage useEffect call getMe")//debug
+        }
     }, [])
 
-    if (isAuth) return <Redirect to={'/profile'}/>
 
+    if (isAuth === true) return <Redirect to={'/profile'}/>
 
-        return (
-            <div className={s.loginPage}>
-                {waiting && <span>123456789</span>}
-                <div className={s.formWrap}>
+    return (
+        <div className={s.loginPage}>
+            {waiting
+                ? <Preloader/>
+                : <div className={s.formWrap}>
                     <TextField onChange={(event) => setLoginInput(event.target.value)} value={loginInput}
                                fullWidth={true}
                                color="primary" label="Write your username" variant="filled"/>
                     <TextField onChange={(event) => setPasswordInput(event.target.value)} value={passwordInput}
-                               fullWidth={true}
+                               fullWidth={true} type="password"
                                color="primary" label="Write your password" variant="filled" className={classes.root}/>
                     <Button onClick={() => dispatch(login(loginInput, passwordInput))} variant="contained"
                             className={classes.root} color="primary" fullWidth={true}>Login</Button>
-                </div>
-            </div>
-        )
+                </div>}
+        </div>
+    )
 
 }
 

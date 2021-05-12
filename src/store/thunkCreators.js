@@ -12,6 +12,7 @@ export const getMe = () => async dispatch => {
         console.log("getMe is fail")
     }
     dispatch(waitingOff())
+    return response
 }
 
 export const login = (email, password, rememberMe, captcha) => async (dispatch) => {
@@ -31,6 +32,7 @@ export const logout = () => async dispatch => {
 let response = await API.logout()
     if (response.data.resultCode === 0) {
         dispatch(setUserData(null, null, null))
+        dispatch(setMainProfile(null))
         dispatch(isAuth(false))
         console.log("logout is ok")
     } else {
