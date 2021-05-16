@@ -1,0 +1,40 @@
+.userItem {
+  & + & {
+    margin-top: 10px;
+  }
+
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+
+  .leftPart {
+    display: flex;
+
+
+    .avaWrap {
+
+    }
+
+    .infoWrap {
+      margin-left: 15px;
+      padding: 2px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+    }
+  }
+
+  .rightPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .btnWrap {
+      margin-right: 20px;
+    }
+  }
+}

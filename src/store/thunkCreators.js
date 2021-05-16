@@ -1,28 +1,27 @@
-import {isAuth, setMainProfile, setUserData, waitingOff, waitingOn} from "./actionCreators";
+import {setIsAuth, setProfile, waitingOff, waitingOn} from "./actionCreators";
 import {API} from "../api/api";
 
 export const getMe = () => async dispatch => {
-    dispatch(waitingOn())
     let response = await API.getMe()
     if (response.resultCode === 0) {
-        dispatch(setUserData(response.data.id, response.data.login, response.data.email))
-        dispatch(isAuth(true))
-        console.log("getMe is ok")
+        localStorage.setItem('authId', response.data.id)
+        localStorage.setItem('authLogin', response.data.login)
+        localStorage.setItem('authEmail',  response.data.email)
+        dispatch(setIsAuth(true))
+        console.log("thunkCreators getMe is ok")
     } else {
-        console.log("getMe is fail")
+        console.log("thunkCreators getMe is fail")
     }
-    dispatch(waitingOff())
-    return response
 }
 
 export const login = (email, password, rememberMe, captcha) => async (dispatch) => {
     dispatch(waitingOn())
     let response = await API.login(email, password, rememberMe, captcha)
     if (response.data.resultCode === 0) {
-        dispatch(getMe())
-        console.log("login is ok")
+        await dispatch(getMe())
+        console.log("thunkCreators login is ok")
     } else {
-        console.log("login is fail")
+        console.log("thunkCreators login is fail")
     }
     dispatch(waitingOff())
 }
@@ -31,24 +30,27 @@ export const logout = () => async dispatch => {
     dispatch(waitingOn())
 let response = await API.logout()
     if (response.data.resultCode === 0) {
-        dispatch(setUserData(null, null, null))
-        dispatch(setMainProfile(null))
-        dispatch(isAuth(false))
-        console.log("logout is ok")
+        dispatch(setProfile(null))
+        dispatch(setIsAuth(false))
+        localStorage.removeItem('authLogin')
+        localStorage.removeItem('authEmail')
+        localStorage.removeItem('authId')
+        console.log("thunkCreators logout is ok")
     } else {
-        console.log("logout is fail")
+        console.log("thunkCreators logout is fail")
     }
     dispatch(waitingOff())
 }
 
-export const getProfile = (id) => async dispatch => {
+export const addProfile = (id) => async dispatch => {
     dispatch(waitingOn())
     let response = await API.getProfile(id)
     if (response.status === 200) {
-        dispatch(setMainProfile(response.data))
-        console.log("getProfile is ok")
+        dispatch(setProfile(response.data))
+        dispatch(setIsAuth(true))
+        console.log("thunkCreators addProfile is ok")
     } else {
-        console.log("getProfile is fail")
+        console.log("thunkCreators addProfile is fail")
     }
     dispatch(waitingOff())
 }

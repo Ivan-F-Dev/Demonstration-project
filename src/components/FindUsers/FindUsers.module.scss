@@ -1,7 +1,18 @@
 @import "../../defaultStyles";
 
 .findUsers {
+  min-height: 90vh;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+
+  .subPaginator {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+  }
 }
 
 

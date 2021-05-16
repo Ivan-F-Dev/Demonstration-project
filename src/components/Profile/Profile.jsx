@@ -3,26 +3,24 @@ import s from './Profile.module.scss';
 import Posts from "./Posts/Posts.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
-import {getProfile} from "../../store/thunkCreators";
+import {addProfile} from "../../store/thunkCreators";
 import Preloader from "../../MUI/Preloader/Preloader";
 
 const Profile = (props) => {
 
     const dispatch = useDispatch()
     const waiting = useSelector(state => state.authorization.waiting)
-    const isAuth = useSelector(state => state.authorization.isAuth)
-    const mainProfile = useSelector(state => state.authorization.mainProfile)
-    const id = useSelector(state => state.authorization.id)
+    const profile = useSelector(state => state.profilePage.profile)
+
+    let id = localStorage.authId
+    console.log(props)
+    console.log('Profile was rendered')
 
     useEffect( () => {
-        if (isAuth === true && waiting === false) {
-            dispatch(getProfile(id))
-            console.log("Profile useEffect call getProfile")//debug
-        } else {
-            console.log("Profile useEffect alternative")}//debug
+        if (id) dispatch(addProfile(id))
     }, [])
 
-    if (isAuth === false) return <Redirect to={'/login'}/>
+    if (!id) return <Redirect to={'/login'}/>
 
     return (
         <div>
@@ -33,7 +31,7 @@ const Profile = (props) => {
                         <div className={s.leftColumnItem}>
                             <div className={s.avatarWrapper}>
                                 <div className={s.avatar}>
-                                    <img src={mainProfile !== null ? mainProfile.photos.large : "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294"} alt="https://via.placeholder.com/600/92c952"/>
+                                    <img src={profile === null ? "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294" : profile.photos.large} alt="https://via.placeholder.com/600/92c952"/>
                                 </div>
                             </div>
                         </div>

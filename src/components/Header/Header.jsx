@@ -17,8 +17,11 @@ export const useStyles = makeStyles((theme) => ({
 const Header = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
+    const profile = useSelector(state => state.profilePage.profile)
     const isAuth = useSelector(state => state.authorization.isAuth)
-    const mainProfile = useSelector(state => state.authorization.mainProfile)
+
+
+    console.log('Header was rendered')
 
     return <div className={s.header}>
         <div className={s.leftHeaderPart}>
@@ -32,17 +35,21 @@ const Header = () => {
             </div>
         </div>
         <div className={s.rightHeaderPart}>
-            <div className={s.name}><NavLink className={s.link} to="/profile"><Button className={classes.root}>IVAN</Button></NavLink></div>
+            <div className={s.name}><NavLink className={s.link} to="/profile"><Button
+                className={classes.root}>IVAN</Button></NavLink></div>
             <div className={s.photoWrapper}>
-                <img src={mainProfile !== null ? mainProfile.photos.large : "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294"}  alt=""/>
+                <img
+                    src={profile !== null ? profile.photos.large : "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294"}
+                    alt=""/>
             </div>
-            <div className={s.name}><NavLink className={s.link} to="/login">
-                {isAuth ? <Button onClick={() => {
-                    dispatch(logout())
-                    console.log("Header LOGOUT call logout")//debug
-                }}
-                                  className={classes.root}>LOGOUT</Button> : <Button className={classes.root}>LOGIN</Button>}
-            </NavLink></div>
+            <div className={s.name}>
+                {isAuth ? <Button  onClick={() => {
+                        dispatch(logout())
+                        console.log("Header LOGOUT call logout")//debug
+                    }}
+                                  className={classes.root}>LOGOUT</Button> :
+                    <NavLink className={s.link} to="/login"><Button className={classes.root}>LOGIN</Button></NavLink>}
+            </div>
         </div>
     </div>
 }

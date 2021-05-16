@@ -1,5 +1,5 @@
 // ACTION TYPES
-import {ADD_POST, IS_AUTH, SET_MAIN_PROFILE, SET_USER_DATA, WAITING_OFF, WAITING_ON} from "./actionTypes";
+import {ADD_POST, SET_IS_AUTH, SET_PROFILE, WAITING_OFF, WAITING_ON} from "./actionTypes";
 
 
 
@@ -8,10 +8,11 @@ import {ADD_POST, IS_AUTH, SET_MAIN_PROFILE, SET_USER_DATA, WAITING_OFF, WAITING
 
 //profilerReducer
 export const addPost = (payload) => ({type: ADD_POST, payload});
+export const setProfile = (payload) => ({type: SET_PROFILE, payload});
 
 //authReducer
-export const setMainProfile = (mainProfile) => ({type: SET_MAIN_PROFILE, payload: mainProfile})
-export const setUserData = (id, login, email) => ({type: SET_USER_DATA, payload: {id, login, email}})
+
+export const setIsAuth = (payload) => ({type: SET_IS_AUTH, payload})
 export const waitingOn = () => ({type: WAITING_ON})
 export const waitingOff = () => ({type: WAITING_OFF})
-export const isAuth = (status) => ({type: IS_AUTH, status})
+

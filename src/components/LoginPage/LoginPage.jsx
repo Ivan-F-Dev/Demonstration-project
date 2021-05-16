@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import s from './LoginPage.module.scss'
 import {Button, makeStyles, TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {getMe, login} from "../../store/thunkCreators";
+import {login} from "../../store/thunkCreators";
 import {Redirect} from "react-router-dom";
 import Preloader from "../../MUI/Preloader/Preloader";
 
@@ -24,22 +24,15 @@ let LoginPage = (props) => {
 
     const dispatch = useDispatch()
     const waiting = useSelector(state => state.authorization.waiting)
-    const isAuth = useSelector(state => state.authorization.isAuth)
 
     let [loginInput, setLoginInput] = useState('')
     let [passwordInput, setPasswordInput] = useState('')
 
     const classes = useStyles()
 
-    useEffect(() => {
-        if (isAuth === false) {
-             dispatch(getMe())
-            console.log("LoginPage useEffect call getMe")//debug
-        }
-    }, [])
+    console.log('LoginPage was rendered')
 
-
-    if (isAuth === true) return <Redirect to={'/profile'}/>
+    if (localStorage.authId) return <Redirect to={'/profile'}/>
 
     return (
         <div className={s.loginPage}>

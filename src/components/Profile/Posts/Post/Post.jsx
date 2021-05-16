@@ -4,13 +4,13 @@ import {useSelector} from "react-redux";
 
 const Post = (props) => {
 
-    const mainProfile = useSelector(state => state.authorization.mainProfile)
+    const profile = useSelector(state => state.profilePage.profile)
 
     return (
         <div className={s.post}>
             <div className={s.postHeader}>
                 <div className={s.imgWrapper}>
-                    <img src={mainProfile !== null ? mainProfile.photos.large : "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294"} className={s.img} alt="Фото автора поста"/>
+                    <img src={profile !== null ? profile.photos.large : "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294"} className={s.img} alt="Фото автора поста"/>
                 </div>
             </div>
             <div className={s.postContent}>
