@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const UserItem = () => {
+const UserItem = (props) => {
 
     const classes = useStyles()
 
@@ -19,11 +19,11 @@ const UserItem = () => {
         <div className={s.userItem}>
             <div className={s.leftPart}>
                 <div className={s.avaWrap}>
-                    <Avatar alt="" src="" className={classes.large}/>
+                    <Avatar alt="" src={props.photo} className={classes.large}/>
                 </div>
                 <div className={s.infoWrap}>
-                    <div>Name</div>
-                    <div>Id</div>
+                    <div>{props.name}</div>
+                    <div>{props.name}</div>
                 </div>
             </div>
             <div className={s.rightPart}>

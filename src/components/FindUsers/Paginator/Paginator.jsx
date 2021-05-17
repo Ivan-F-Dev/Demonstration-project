@@ -4,7 +4,9 @@ import s from './Paginator.module.scss';
 
 const Paginator = () =>  (
         <div className={s.paginator}>
-            paginator
+            <div>{'<<<'}</div>
+            <div>Paginator</div>
+            <div>{'>>>'}</div>
         </div>
 )
 

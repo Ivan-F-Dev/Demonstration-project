@@ -1,5 +1,6 @@
 @import "../../../defaultStyles";
 
 .paginator {
-
+  display: flex;
+  justify-content: space-around;
 }

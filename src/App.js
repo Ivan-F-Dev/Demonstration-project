@@ -22,6 +22,7 @@ const App = () => (
                 <Navbar/>
             </div>
             <div className={s.contentWrapper}>
+                <Route exact path="/" component={LoginPage}/>
                 <Route path="/login" component={LoginPage}/>
                 <Route path="/profile/:userId?" component={Profile}/>
                 <Route path="/messages" component={Messages}/>

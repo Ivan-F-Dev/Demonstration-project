@@ -14,15 +14,18 @@ export const API = {
             .then(response => response.data)
         // return response;
     },
-    login(email, password, rememberMe= false, captcha=null) {
+    login(email, password, rememberMe = false, captcha = null) {
         return instance.post('auth/login', {email, password, rememberMe, captcha})
     },
     logout() {
         return instance.delete('auth/login')
-            .then( response => response)
+            .then(response => response)
     },
     getProfile(userId) {
         return instance.get(`profile/${userId}`)
 
-    }
+    },
+    getUsers(count = 10, page = 1) {
+        return instance.get(`users?count=${count}&page=${page}`)
+    },
 }

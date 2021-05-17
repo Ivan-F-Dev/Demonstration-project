@@ -1,6 +1,7 @@
 @import "../../defaultStyles";
 
 .messages {
+  width: 99%;
   display: grid;
   grid-template-columns: 4fr 6fr;
 

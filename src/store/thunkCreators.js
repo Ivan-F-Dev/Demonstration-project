@@ -1,4 +1,4 @@
-import {setIsAuth, setProfile, waitingOff, waitingOn} from "./actionCreators";
+import {setIsAuth, setProfile, setTotalNumber, setUsers, waitingOff, waitingOn} from "./actionCreators";
 import {API} from "../api/api";
 
 export const getMe = () => async dispatch => {
@@ -51,6 +51,20 @@ export const addProfile = (id) => async dispatch => {
         console.log("thunkCreators addProfile is ok")
     } else {
         console.log("thunkCreators addProfile is fail")
+    }
+    dispatch(waitingOff())
+}
+
+export const addUsers = (count, page) => async dispatch => {
+    dispatch(waitingOn())
+    let response = await API.getUsers(count, page)
+    console.log(response)
+    if (response.status === 200) {
+        dispatch(setTotalNumber(response.data.totalCount))
+        dispatch(setUsers(response.data.items))
+        console.log("thunkCreators addUsers is ok")
+    } else {
+        console.log("thunkCreators addUsers is fail")
     }
     dispatch(waitingOff())
 }
