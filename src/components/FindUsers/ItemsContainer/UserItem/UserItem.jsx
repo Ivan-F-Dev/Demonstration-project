@@ -3,6 +3,9 @@ import s from './UserItem.module.scss';
 import Avatar from '@material-ui/core/Avatar';
 import {makeStyles} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import {useDispatch} from "react-redux";
+import {sendFollow, sendUnfollow} from "../../../../store/thunkCreators";
+import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -11,7 +14,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const UserItem = (props) => {
+const UserItem = ({name, id, photo, followed}) => {
+
+    const dispatch = useDispatch()
 
     const classes = useStyles()
 
@@ -19,20 +24,25 @@ const UserItem = (props) => {
         <div className={s.userItem}>
             <div className={s.leftPart}>
                 <div className={s.avaWrap}>
-                    <Avatar alt="" src={props.photo} className={classes.large}/>
+                    <NavLink to={'/profile/' + id}>
+                        <Avatar alt="" src={photo} className={classes.large}/>
+                    </NavLink>
                 </div>
                 <div className={s.infoWrap}>
-                    <div>{props.name}</div>
-                    <div>{props.name}</div>
+                    <div>{name}</div>
+                    <div>{id}</div>
                 </div>
             </div>
             <div className={s.rightPart}>
                 <div className={s.btnWrap}>
-                    <Button size="large" variant="contained" color="primary">Follow</Button>
+                    {followed
+                        ? <Button onClick={() => dispatch(sendUnfollow(id))} size="large"
+                                  variant="contained">Unfollow</Button>
+                        : <Button onClick={() => dispatch(sendFollow(id))} size="large" variant="contained"
+                                  color="primary">Follow</Button>}
                 </div>
             </div>
         </div>
     )
 }
-
 export default UserItem;

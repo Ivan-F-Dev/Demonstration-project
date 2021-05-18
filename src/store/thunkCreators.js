@@ -1,4 +1,4 @@
-import {setIsAuth, setProfile, setTotalNumber, setUsers, waitingOff, waitingOn} from "./actionCreators";
+import {setFollowed, setIsAuth, setProfile, setTotalNumber, setUsers, waitingOff, waitingOn} from "./actionCreators";
 import {API} from "../api/api";
 
 export const getMe = () => async dispatch => {
@@ -58,13 +58,36 @@ export const addProfile = (id) => async dispatch => {
 export const addUsers = (count, page) => async dispatch => {
     dispatch(waitingOn())
     let response = await API.getUsers(count, page)
-    console.log(response)
     if (response.status === 200) {
         dispatch(setTotalNumber(response.data.totalCount))
         dispatch(setUsers(response.data.items))
         console.log("thunkCreators addUsers is ok")
     } else {
         console.log("thunkCreators addUsers is fail")
+    }
+    dispatch(waitingOff())
+}
+
+export const sendFollow = (userId) => async dispatch => {
+    dispatch(waitingOn())
+    let response = await API.follow(userId)
+    if (response.status === 200) {
+        dispatch(setFollowed(userId, true))
+        console.log("thunkCreators sendFollow is ok")
+    } else {
+        console.log("thunkCreators sendFollow is fail")
+    }
+    dispatch(waitingOff())
+}
+
+export const sendUnfollow = (userId) => async dispatch => {
+    dispatch(waitingOn())
+    let response = await API.unfollow(userId)
+    if (response.status === 200) {
+        dispatch(setFollowed(userId, false))
+        console.log("thunkCreators sendUnfollow is ok")
+    } else {
+        console.log("thunkCreators sendUnfollow is fail")
     }
     dispatch(waitingOff())
 }

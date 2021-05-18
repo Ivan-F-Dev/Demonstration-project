@@ -1,5 +1,14 @@
 // ACTION TYPES
-import {ADD_POST, SET_IS_AUTH, SET_PROFILE, SET_TOTAL_NUMBER, SET_USERS, WAITING_OFF, WAITING_ON} from "./actionTypes";
+import {
+    ADD_POST,
+    SET_FOLLOWED,
+    SET_IS_AUTH,
+    SET_PROFILE,
+    SET_TOTAL_NUMBER,
+    SET_USERS,
+    WAITING_OFF,
+    WAITING_ON
+} from "./actionTypes";
 
 //ACTION CREATORS
 
@@ -15,3 +24,5 @@ export const waitingOff = () => ({type: WAITING_OFF})
 //findUsersReducer
 export const setTotalNumber = (payload) => ({type: SET_TOTAL_NUMBER, payload})
 export const setUsers = (payload) => ({type: SET_USERS, payload})
+export const setFollowed = (userId, follow ) => ({type: SET_FOLLOWED, userId, follow})
+

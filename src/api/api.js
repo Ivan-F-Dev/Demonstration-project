@@ -28,4 +28,10 @@ export const API = {
     getUsers(count = 10, page = 1) {
         return instance.get(`users?count=${count}&page=${page}`)
     },
+    follow(userId) {
+        return instance.post(`follow/${userId}`)
+    },
+    unfollow(userId) {
+        return instance.delete(`follow/${userId}`)
+    }
 }

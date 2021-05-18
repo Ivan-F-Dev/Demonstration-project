@@ -1,4 +1,4 @@
-import {SET_TOTAL_NUMBER, SET_USERS} from "../actionTypes";
+import {SET_FOLLOWED, SET_TOTAL_NUMBER, SET_USERS} from "../actionTypes";
 
 //INITIAL STATE FOR REDUCER
 const initialState = {
@@ -19,6 +19,18 @@ export let findUsersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 users: usersArr
+            }
+        case SET_FOLLOWED:
+            const follow = action.follow
+            const userId = action.userId
+            return {
+                ...state,
+                users: state.users.map(user => {
+                    if (user.id === userId) {
+                        return {...user, followed: follow}
+                    }
+                    return user
+                }),
             }
         default :
             return state
