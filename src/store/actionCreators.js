@@ -3,7 +3,7 @@ import {
     ADD_POST,
     SET_FOLLOWED,
     SET_IS_AUTH,
-    SET_PROFILE,
+    SET_PROFILE, SET_STATUS,
     SET_TOTAL_NUMBER,
     SET_USERS,
     WAITING_OFF,
@@ -15,6 +15,7 @@ import {
 //profilerReducer
 export const addPost = (payload) => ({type: ADD_POST, payload});
 export const setProfile = (payload) => ({type: SET_PROFILE, payload});
+export const setStatus = (payload) => ({type: SET_STATUS, payload});
 
 //authReducer
 export const setIsAuth = (payload) => ({type: SET_IS_AUTH, payload})

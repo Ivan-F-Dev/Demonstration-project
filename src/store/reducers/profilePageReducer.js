@@ -1,7 +1,8 @@
-import {ADD_POST, SET_PROFILE} from "../actionTypes";
+import {ADD_POST, SET_PROFILE, SET_STATUS} from "../actionTypes";
 
 //INITIAL STATE FOR REDUCER
 const initialState = {
+    status: null,
     profile: null,
     posts: []
 }
@@ -18,6 +19,11 @@ export let profileReducer = (state = initialState, action) => {
                     name: "AuthorName",
                     img: null
                 }],
+            }
+        case SET_STATUS:
+            const status = action.payload
+            return {
+                ...state, status: status
             }
         case SET_PROFILE:
             const profile = action.payload

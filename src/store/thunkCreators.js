@@ -1,4 +1,13 @@
-import {setFollowed, setIsAuth, setProfile, setTotalNumber, setUsers, waitingOff, waitingOn} from "./actionCreators";
+import {
+    setFollowed,
+    setIsAuth,
+    setProfile,
+    setStatus,
+    setTotalNumber,
+    setUsers,
+    waitingOff,
+    waitingOn
+} from "./actionCreators";
 import {API} from "../api/api";
 
 export const getMe = () => async dispatch => {
@@ -45,8 +54,10 @@ let response = await API.logout()
 export const addProfile = (id) => async dispatch => {
     dispatch(waitingOn())
     let response = await API.getProfile(id)
-    if (response.status === 200) {
+    let status = await API.getStatus(id)
+    if (response.status === 200 && status.status === 200) {
         dispatch(setProfile(response.data))
+        dispatch(setStatus(status.data))
         dispatch(setIsAuth(true))
         console.log("thunkCreators addProfile is ok")
     } else {

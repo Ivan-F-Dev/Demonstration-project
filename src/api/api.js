@@ -25,6 +25,10 @@ export const API = {
         return instance.get(`profile/${userId}`)
 
     },
+    getStatus(userId) {
+        return instance.get(`profile/status/${userId}`)
+
+    },
     getUsers(count = 10, page = 1) {
         return instance.get(`users?count=${count}&page=${page}`)
     },

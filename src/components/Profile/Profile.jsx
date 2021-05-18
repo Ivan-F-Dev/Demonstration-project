@@ -5,16 +5,29 @@ import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {addProfile} from "../../store/thunkCreators";
 import Preloader from "../../MUI/Preloader/Preloader";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
 
     const dispatch = useDispatch()
     const waiting = useSelector(state => state.authorization.waiting)
     const profile = useSelector(state => state.profilePage.profile)
+    const status = useSelector(state => state.profilePage.status)
 
     let id = localStorage.authId
-    console.log(props)
+    console.log(props.match.params.userId)
     console.log('Profile was rendered')
+
+    const reloadProfile = () => {
+        let userId = props.match.params.userId
+        if (!userId) {
+            userId = localStorage.authId
+            if (!userId) {
+                props.history.push("/login")
+            }
+        }
+        dispatch(addProfile(userId))
+    }
 
     useEffect( () => {
         if (id) dispatch(addProfile(id))
@@ -38,20 +51,9 @@ const Profile = (props) => {
                     </div>
                     <div className={s.rightColumn}>
                         <div className={s.rightColumnItem}>
-                            <div>Name</div>
+                            <ProfileInfo profile={profile} status={status}/>
                         </div>
-                        <div className={s.rightColumnItem}>
-                            <div>Status</div>
-                        </div>
-                        <div className={s.rightColumnItem}>
-                            <div>Info</div>
-                        </div>
-                        <div className={s.rightColumnItem}>
-                            <div>Photos</div>
-                        </div>
-                        <div className={s.rightColumnItem}>
-                            <div>AddPostInput</div>
-                        </div>
+
                         <div className={s.rightColumnItem}>
                             <Posts/>
                         </div>

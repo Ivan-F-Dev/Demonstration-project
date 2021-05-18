@@ -7,11 +7,11 @@ export const WAITING_OFF = "WAITING_OFF"
 //profileReducer
 export const ADD_POST = "ADD_POST"
 export const SET_PROFILE = "SET_PROFILE"
+export const SET_STATUS = "SET_STATUS"
 //findUsersReducer
 export const SET_TOTAL_NUMBER = "SET_TOTAL_NUMBER"
 export const SET_USERS = "SET_USERS"
 export const SET_FOLLOWED = "SET_FOLLOWED"
-
 //
 
 
