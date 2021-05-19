@@ -1,6 +1,19 @@
 @import "../../../defaultStyles";
 
 .paginator {
+  width: 97%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+
+  .centralItem {
+    display: flex;
+    justify-content: space-between;
+
+    .subCentralItem {
+      width: 33%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 }

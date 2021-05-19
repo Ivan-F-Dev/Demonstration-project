@@ -11,7 +11,6 @@ const ItemsContainer = ({usersState}) => {
     return(
 
         <div className={s.itemsContainer}>
-            <button onClick={ () => console.log(usersState.users)}>123</button>
             {userItemsArr}
         </div>
     )
