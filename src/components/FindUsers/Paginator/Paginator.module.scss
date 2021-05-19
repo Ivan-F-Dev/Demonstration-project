@@ -16,4 +16,17 @@
       align-items: center;
     }
   }
+
+  .arrowItem {
+    display: flex;
+    align-items: center;
+
+    button {
+      background-color: $myGray;
+      border: none;
+      padding: 0;
+      line-height: 0;
+      cursor: pointer;
+    }
+  }
 }

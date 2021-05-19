@@ -9,9 +9,18 @@
 
 
   .subPaginator {
+    width: 97%;
     display: flex;
-    justify-content: space-around;
-    padding: 10px;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    button {
+      background-color: $myGray;
+      border: none;
+      padding: 0;
+      line-height: 0;
+      cursor: pointer;
+    }
   }
 }
 

@@ -6,7 +6,7 @@ import UserItem from "./UserItem/UserItem";
 
 const ItemsContainer = ({usersState}) => {
 
-    let userItemsArr = usersState.users !== null ? usersState.users.map( (e) =>  <UserItem name={e.name} id={e.id} photo={e.photos.large} followed={e.followed} key={e.id}/>) : 'users === null'
+    let userItemsArr = usersState.users !== null ? usersState.users.map( (e) =>  <UserItem name={e.name} id={e.id} photo={e.photos.large} followed={e.followed} key={e.id}/>) : ''
 
     return(
 

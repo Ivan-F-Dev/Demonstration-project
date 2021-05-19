@@ -3,6 +3,7 @@ import s from './Paginator.module.scss';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core";
+import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,7 +25,9 @@ const Paginator = ({request, usersState}) => {
     return (
         <div className={s.paginator}>
 
-            <div className={s.sidelItem}>{'<<<'}</div>
+            <div className={s.arrowItem}>
+                <button><ArrowBackIos color="primary"/></button>
+            </div>
             <div className={s.centralItem}>
                 <div className={s.subCentralItem}>
                     <div>{`All users: ${totalNumber}`}</div>
@@ -55,7 +58,9 @@ const Paginator = ({request, usersState}) => {
                 </div>
 
             </div>
-            <div className={s.sideItem}>{'>>>'}</div>
+            <div className={s.arrowItem}>
+                <button><ArrowForwardIos color="primary"/></button>
+            </div>
         </div>
     )
 }

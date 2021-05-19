@@ -5,6 +5,7 @@ import ItemsContainer from "./ItemsContainer/ItemsContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {addUsers} from "../../store/thunkCreators";
 import Preloader from "../../MUI/Preloader/Preloader";
+import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
 
 
 const FindUsers = () => {
@@ -25,9 +26,9 @@ const FindUsers = () => {
                     {waiting ? <Preloader/> : <ItemsContainer usersState={usersState}/>}
                 </div>
                 <div className={s.subPaginator}>
-                    <div>{'<<<'}</div>
-                    <div>subPaginator</div>
-                    <div>{'>>>'}</div>
+                    <button><ArrowBackIos color="primary"/></button>
+                    <div></div>
+                    <button><ArrowForwardIos color="primary"/></button>
                 </div>
             </div>
         </div>
