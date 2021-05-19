@@ -2,6 +2,8 @@ import React from 'react'
 import s from './Post.module.scss';
 import {useSelector} from "react-redux";
 
+
+
 const Post = (props) => {
 
     const profile = useSelector(state => state.profilePage.profile)

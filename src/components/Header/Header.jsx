@@ -6,11 +6,16 @@ import {NavLink} from "react-router-dom";
 import {makeStyles} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../../store/thunkCreators";
+import Avatar from "@material-ui/core/Avatar";
 
 export const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         justifyContent: "center",
+    },
+    large: {
+        width: theme.spacing(6),
+        height: theme.spacing(6),
     },
 }));
 
@@ -38,9 +43,7 @@ const Header = () => {
             <div className={s.name}><NavLink className={s.link} to="/profile"><Button
                 className={classes.root}>IVAN</Button></NavLink></div>
             <div className={s.photoWrapper}>
-                <img
-                    src={profile !== null ? profile.photos.large : "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294"}
-                    alt=""/>
+                <Avatar alt="" src={profile === null ? '' : profile.photos.large} className={classes.large}/>
             </div>
             <div className={s.name}>
                 {isAuth ? <Button  onClick={() => {

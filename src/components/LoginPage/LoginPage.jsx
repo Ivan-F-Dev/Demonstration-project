@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
 
-        '& .MuiFilledInput-root': {
+        '& .MuiOutlinedInput-root': {
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0
         }

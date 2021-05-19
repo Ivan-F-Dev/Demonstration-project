@@ -13,26 +13,23 @@ const FindUsers = () => {
     const usersState = useSelector(state => state.findUsersPage)
     const waiting = useSelector(state => state.authorization.waiting)
 
-    let request = () => {
-        dispatch(addUsers(10, 1219))
+    let request = (count, page) => {
+        dispatch(addUsers(count, page))
     }
 
     return (
         <div>
-            {waiting
-                ? <Preloader/>
-                :<div className={s.findUsers}>
-                    <div>
-                        <Paginator/>
-                        <ItemsContainer usersState={usersState}/>
-                        <button onClick={() => request()}>log</button>
-                    </div>
-                    <div className={s.subPaginator}>
-                        <div>{'<<<'}</div>
-                        <div>subPaginator</div>
-                        <div>{'>>>'}</div>
-                    </div>
-                </div>}
+            <div className={s.findUsers}>
+                <div>
+                    <Paginator request={request} usersState={usersState}/>
+                    {waiting ? <Preloader/> : <ItemsContainer usersState={usersState}/>}
+                </div>
+                <div className={s.subPaginator}>
+                    <div>{'<<<'}</div>
+                    <div>subPaginator</div>
+                    <div>{'>>>'}</div>
+                </div>
+            </div>
         </div>
     )
 }

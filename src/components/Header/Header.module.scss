@@ -55,7 +55,8 @@
     }
 
     .photoWrapper {
-      margin: 0;
+      display: block;
+      /*margin: 0;
       overflow: hidden;
       position: relative;
       width: 42px;
@@ -70,7 +71,7 @@
         left: 0;
         top: 0;
         object-fit: cover;
-      }
+      }*/
     }
 
     .burger {
