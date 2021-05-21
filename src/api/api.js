@@ -29,8 +29,8 @@ export const API = {
         return instance.get(`profile/status/${userId}`)
 
     },
-    getUsers(count = 10, page = 1) {
-        return instance.get(`users?count=${count}&page=${page}`)
+    getUsers(count = 10, page = 1, friend = '') {
+        return instance.get(`users?count=${count}&page=${page}&friend=${friend}`)
     },
     follow(userId) {
         return instance.post(`follow/${userId}`)

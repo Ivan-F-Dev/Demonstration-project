@@ -12,15 +12,15 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const Paginator = ({request, usersState}) => {
+const Paginator = ({request, totalNumber}) => {
 
     let [count, setCount] = useState(10)
     let [page, setPage] = useState(1)
 
     let classes = useStyles()
 
-    let totalNumber = usersState.totalNumber
-    let pagesCount = Math.ceil(totalNumber / count)
+    let total = totalNumber
+    let pagesCount = Math.ceil(total / count)
 
     return (
         <div className={s.paginator}>
@@ -30,7 +30,7 @@ const Paginator = ({request, usersState}) => {
             </div>
             <div className={s.centralItem}>
                 <div className={s.subCentralItem}>
-                    <div>{`All users: ${totalNumber}`}</div>
+                    <div>{`All users: ${total}`}</div>
                     <div>{`All pages: ${pagesCount}`}</div>
                 </div>
 

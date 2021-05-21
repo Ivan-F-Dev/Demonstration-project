@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const UserItem = ({name, id, photo, followed}) => {
+const UserItem = ({name, id, photo, followed, friend}) => {
 
     const dispatch = useDispatch()
 
@@ -36,9 +36,9 @@ const UserItem = ({name, id, photo, followed}) => {
             <div className={s.rightPart}>
                 <div className={s.btnWrap}>
                     {followed
-                        ? <Button onClick={() => dispatch(sendUnfollow(id))} size="large"
+                        ? <Button onClick={() => dispatch(sendUnfollow(id, friend))} size="large"
                                   variant="contained">Unfollow</Button>
-                        : <Button onClick={() => dispatch(sendFollow(id))} size="large" variant="contained"
+                        : <Button onClick={() => dispatch(sendFollow(id, friend))} size="large" variant="contained"
                                   color="primary">Follow</Button>}
                 </div>
             </div>

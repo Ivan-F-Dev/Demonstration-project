@@ -1,9 +1,9 @@
 import {
-    setFollowed,
+    setFollowed, setFollowedFriend, setFriends,
     setIsAuth,
     setProfile,
     setStatus,
-    setTotalNumber,
+    setTotalNumber, setTotalNumberFriends,
     setUsers,
     waitingOff,
     waitingOn
@@ -78,11 +78,23 @@ export const addUsers = (count, page) => async dispatch => {
     }
     dispatch(waitingOff())
 }
-
-export const sendFollow = (userId) => async dispatch => {
+export const addFriends = (count, page, friend = true) => async dispatch => {
+    dispatch(waitingOn())
+    let response = await API.getUsers(count, page, friend)
+    if (response.status === 200) {
+        dispatch(setTotalNumberFriends(response.data.totalCount))
+        dispatch(setFriends(response.data.items))
+        console.log("thunkCreators addFriends is ok")
+    } else {
+        console.log("thunkCreators addFriends is fail")
+    }
+    dispatch(waitingOff())
+}
+export const sendFollow = (userId, isFriend = false) => async dispatch => {
     dispatch(waitingOn())
     let response = await API.follow(userId)
     if (response.status === 200) {
+        isFriend ? dispatch(setFollowedFriend(userId, true)) : dispatch(setFollowed(userId, true))
         dispatch(setFollowed(userId, true))
         console.log("thunkCreators sendFollow is ok")
     } else {
@@ -91,11 +103,11 @@ export const sendFollow = (userId) => async dispatch => {
     dispatch(waitingOff())
 }
 
-export const sendUnfollow = (userId) => async dispatch => {
+export const sendUnfollow = (userId, isFriend = false) => async dispatch => {
     dispatch(waitingOn())
     let response = await API.unfollow(userId)
     if (response.status === 200) {
-        dispatch(setFollowed(userId, false))
+        isFriend ? dispatch(setFollowedFriend(userId, false)) : dispatch(setFollowed(userId, false))
         console.log("thunkCreators sendUnfollow is ok")
     } else {
         console.log("thunkCreators sendUnfollow is fail")

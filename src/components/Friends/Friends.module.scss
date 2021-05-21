@@ -1,11 +1,25 @@
 @import "../../defaultStyles";
 
 .friends {
-  width: 99%;
+  min-height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+
+  .subPaginator {
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+
+    button {
+      background-color: $myGray;
+      border: none;
+      padding: 0;
+      line-height: 0;
+      cursor: pointer;
+    }
+  }
 }
-
-
-
-
-
-

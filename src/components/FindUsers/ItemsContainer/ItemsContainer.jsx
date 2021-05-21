@@ -4,14 +4,14 @@ import UserItem from "./UserItem/UserItem";
 
 
 
-const ItemsContainer = ({usersState}) => {
+const ItemsContainer = ({items, friend}) => {
 
-    let userItemsArr = usersState.users !== null ? usersState.users.map( (e) =>  <UserItem name={e.name} id={e.id} photo={e.photos.large} followed={e.followed} key={e.id}/>) : ''
+    let itemsArr = items !== null ? items.map( (e) =>  <UserItem friend={friend} name={e.name} id={e.id} photo={e.photos.large} followed={e.followed} key={e.id}/>) : ''
 
     return(
 
         <div className={s.itemsContainer}>
-            {userItemsArr}
+            {itemsArr}
         </div>
     )
 }

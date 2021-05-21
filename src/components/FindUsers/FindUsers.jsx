@@ -8,7 +8,7 @@ import Preloader from "../../MUI/Preloader/Preloader";
 import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
 
 
-const FindUsers = () => {
+const FindUsers = (props) => {
 
     const dispatch = useDispatch()
     const usersState = useSelector(state => state.findUsersPage)
@@ -22,13 +22,17 @@ const FindUsers = () => {
         <div>
             <div className={s.findUsers}>
                 <div>
-                    <Paginator request={request} usersState={usersState}/>
-                    {waiting ? <Preloader/> : <ItemsContainer usersState={usersState}/>}
+                    <Paginator request={request} totalNumber={usersState.totalNumber}/>
+                    {waiting ? <Preloader/> : <ItemsContainer friend={false} items={usersState.users}/>}
                 </div>
                 <div className={s.subPaginator}>
-                    <button><ArrowBackIos color="primary"/></button>
+                    <button onClick={ () => {
+                        console.log(props.match.param)
+                    }}><ArrowBackIos color="primary"/></button>
                     <div></div>
-                    <button><ArrowForwardIos color="primary"/></button>
+                    <button onClick={ () => {
+                        console.log(props.match.param)
+                    }}><ArrowForwardIos color="primary"/></button>
                 </div>
             </div>
         </div>

@@ -1,9 +1,18 @@
-import {SET_FOLLOWED, SET_TOTAL_NUMBER, SET_USERS} from "../actionTypes";
+import {
+    SET_FOLLOWED,
+    SET_FOLLOWED_FRIEND,
+    SET_FRIENDS,
+    SET_TOTAL_NUMBER,
+    SET_TOTAL_NUMBER_FRIENDS,
+    SET_USERS
+} from "../actionTypes";
 
 //INITIAL STATE FOR REDUCER
 const initialState = {
     totalNumber: null,
-    users: null
+    users: null,
+    totalNumberFriends: null,
+    friends: null
 }
 //REDUCER
 export let findUsersReducer = (state = initialState, action) => {
@@ -20,6 +29,18 @@ export let findUsersReducer = (state = initialState, action) => {
                 ...state,
                 users: usersArr
             }
+        case SET_TOTAL_NUMBER_FRIENDS:
+            const totalNumberFriends = action.payload
+            return {
+                ...state,
+                totalNumberFriends: totalNumberFriends
+            }
+        case SET_FRIENDS:
+            const friendsArr = action.payload
+            return {
+                ...state,
+                friends: friendsArr
+            }
         case SET_FOLLOWED:
             const follow = action.follow
             const userId = action.userId
@@ -32,9 +53,19 @@ export let findUsersReducer = (state = initialState, action) => {
                     return user
                 }),
             }
+        case SET_FOLLOWED_FRIEND:
+            const followFriend = action.follow
+            const friendId = action.userId
+            return {
+                ...state,
+                friends: state.friends.map(user => {
+                    if (user.id === friendId) {
+                        return {...user, followed: followFriend}
+                    }
+                    return user
+                }),
+            }
         default :
             return state
     }
 }
-
-

@@ -1,10 +1,10 @@
 // ACTION TYPES
 import {
     ADD_POST,
-    SET_FOLLOWED,
+    SET_FOLLOWED, SET_FOLLOWED_FRIEND, SET_FRIENDS,
     SET_IS_AUTH,
     SET_PROFILE, SET_STATUS,
-    SET_TOTAL_NUMBER,
+    SET_TOTAL_NUMBER, SET_TOTAL_NUMBER_FRIENDS,
     SET_USERS,
     WAITING_OFF,
     WAITING_ON
@@ -25,5 +25,8 @@ export const waitingOff = () => ({type: WAITING_OFF})
 //findUsersReducer
 export const setTotalNumber = (payload) => ({type: SET_TOTAL_NUMBER, payload})
 export const setUsers = (payload) => ({type: SET_USERS, payload})
+export const setTotalNumberFriends = (payload) => ({type: SET_TOTAL_NUMBER_FRIENDS, payload})
+export const setFriends = (payload) => ({type: SET_FRIENDS, payload})
 export const setFollowed = (userId, follow ) => ({type: SET_FOLLOWED, userId, follow})
+export const setFollowedFriend = (userId, follow ) => ({type: SET_FOLLOWED_FRIEND, userId, follow})
 
