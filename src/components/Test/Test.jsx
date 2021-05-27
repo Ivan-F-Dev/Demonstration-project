@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import s from './Test.module.scss';
 import Button from '@material-ui/core/Button';
-import {makeStyles, TextField} from "@material-ui/core";
-import {login} from "../../store/thunkCreators";
+import { makeStyles, TextField } from "@material-ui/core";
+import { API } from "../../api/api";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,6 +29,10 @@ const Test = () => {
 
     const classes = useStyles()
 
+    const signUp = async () => {
+        await API.signUp(nicknameInput, nameInput, emailInput, passwordInput)
+    }
+
     return (
         <div className={s.test}>
             Test
@@ -41,21 +45,17 @@ const Test = () => {
             <div className={s.form}>
                 <div className={s.formWrap}>
                     <TextField onChange={(event) => setNicknameInput(event.target.value)} value={nicknameInput}
-                               fullWidth={true} helperText = {nicknameInput && "Рома"}
-                               color="primary" label="Write your nickname" variant="filled"/>
+                        fullWidth={true} color="primary" label="Write your nickname" variant="filled" />
                     <TextField onChange={(event) => setNameInput(event.target.value)} value={nameInput}
-                               fullWidth={true} helperText = {nameInput && "Пидор"}
-                               color="primary" label="Write your name" variant="filled" className={classes.root}/>
+                        fullWidth={true} color="primary" label="Write your name" variant="filled" className={classes.root} />
                     <TextField onChange={(event) => setEmailInput(event.target.value)} value={emailInput}
-                               fullWidth={true} helperText = {emailInput && "Нашел"}
-                               color="primary" label="Write your email" variant="filled" className={classes.root}/>
+                        fullWidth={true} color="primary" label="Write your email" variant="filled" className={classes.root} />
                     <TextField onChange={(event) => setPasswordInput(event.target.value)} value={passwordInput}
-                               fullWidth={true} type={passwordInput && "password"} helperText = {passwordInput && "Пасхалку"}
-                               color="primary" label="Write your password" variant="filled" className={classes.root}/>
-                    <TextField onChange={(event) => setCheckPasswordInput(event.target.value)} value={checkPasswordInput}
-                               fullWidth={true} type={passwordInput && "password"} helperText = {checkPasswordInput && "P.S. ИдиНаХуй"}
-                               color="primary" label="Write your password" variant="filled" className={classes.root}/>
-                    <Button  variant="contained" className={classes.root} color="primary" fullWidth={true}>Login</Button>
+                        fullWidth={true} type={passwordInput && "password"} color="primary" label="Write your password" variant="filled" className={classes.root} />
+                    <TextField onChange={(event) => setCheckPasswordInput(event.target.value)} value={checkPasswordInput} fullWidth={true} type={passwordInput && "password"}
+                        color="primary" label="Write your password" variant="filled" className={classes.root} />
+                    <Button variant="contained" className={classes.root} color="primary" fullWidth={true}
+                        onClick={() => signUp()}>Login</Button>
                 </div>
             </div>
         </div>
