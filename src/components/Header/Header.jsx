@@ -22,7 +22,7 @@ export const useStyles = makeStyles((theme) => ({
 const Header = () => {
     const classes = useStyles()
     const dispatch = useDispatch()
-    const profile = useSelector(state => state.profilePage.profile)
+    const profile = useSelector(state => state.profilePage.mainProfile.info)
     const isAuth = useSelector(state => state.authorization.isAuth)
 
 

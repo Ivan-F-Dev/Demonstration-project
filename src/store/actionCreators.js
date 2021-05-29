@@ -14,8 +14,8 @@ import {
 
 //profilerReducer
 export const addPost = (payload) => ({type: ADD_POST, payload});
-export const setProfile = (payload) => ({type: SET_PROFILE, payload});
-export const setStatus = (payload) => ({type: SET_STATUS, payload});
+export const setProfile = (payload, isVisitedProfileInfo = false) => ({type: SET_PROFILE, payload, isVisitedProfileInfo});
+export const setStatus = (payload, isVisitedProfileStatus = false) => ({type: SET_STATUS, payload, isVisitedProfileStatus});
 
 //authReducer
 export const setIsAuth = (payload) => ({type: SET_IS_AUTH, payload})

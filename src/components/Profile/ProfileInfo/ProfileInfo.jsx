@@ -2,30 +2,30 @@ import React from 'react'
 import s from './ProfileInfo.module.scss'
 
 
-const ProfileInfo = ({profile, status}) => {
+const ProfileInfo = ({currentProfile}) => {
 
     return (
         <div className={s.profileInfo}>
             <div className={s.item}>
-                <div>{!profile ? '...' : profile.fullName}</div>
-                <div>{!status ? '...' : status}</div>
+                <div>{!currentProfile.info ? '...' : currentProfile.info.fullName}</div>
+                <div>{!currentProfile.status ? '...' : currentProfile.status}</div>
             </div>
             <div className={s.item}>
-                <div>{!profile ? '...' : profile.userId}</div>
-                <div>{!profile ? '...' : profile.lookingForAJob}</div>
-                <div>{!profile ? '...' : profile.lookingForAJobDescription}</div>
+                <div>{!currentProfile.info ? '...' : currentProfile.info.userId}</div>
+                <div>{!currentProfile.info ? '...' : currentProfile.info.lookingForAJob}</div>
+                <div>{!currentProfile.info ? '...' : currentProfile.info.lookingForAJobDescription}</div>
             </div>
             <div className={s.item}>
                 <div>Contacts:</div>
                 <div>
-                    <div>{!profile ? '...' : profile.contacts.github}</div>
-                    <div>{!profile ? '...' : profile.contacts.vk}</div>
-                    <div>{!profile ? '...' : profile.contacts.facebook}</div>
-                    <div>{!profile ? '...' : profile.contacts.instagram}</div>
-                    <div>{!profile ? '...' : profile.contacts.twitter}</div>
-                    <div>{!profile ? '...' : profile.contacts.website}</div>
-                    <div>{!profile ? '...' : profile.contacts.youtube}</div>
-                    <div>{!profile ? '...' : profile.contacts.mainLink}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.github}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.vk}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.facebook}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.instagram}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.twitter}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.website}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.youtube}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.mainLink}</div>
                 </div>
             </div>
         </div>

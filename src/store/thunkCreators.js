@@ -51,13 +51,13 @@ let response = await API.logout()
     dispatch(waitingOff())
 }
 
-export const addProfile = (id) => async dispatch => {
+export const addProfile = (id, isVisitedProfile) => async dispatch => {
     dispatch(waitingOn())
     let response = await API.getProfile(id)
     let status = await API.getStatus(id)
     if (response.status === 200 && status.status === 200) {
-        dispatch(setProfile(response.data))
-        dispatch(setStatus(status.data))
+        dispatch(setProfile(response.data, isVisitedProfile))
+        dispatch(setStatus(status.data, isVisitedProfile))
         dispatch(setIsAuth(true))
         console.log("thunkCreators addProfile is ok")
     } else {

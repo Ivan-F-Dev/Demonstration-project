@@ -11,29 +11,24 @@ const Profile = (props) => {
 
     const dispatch = useDispatch()
     const waiting = useSelector(state => state.authorization.waiting)
-    const profile = useSelector(state => state.profilePage.profile)
-    const status = useSelector(state => state.profilePage.status)
+    const profilePage = useSelector(state => state.profilePage)
 
-    let id = localStorage.authId
-    console.log(props.match.params.userId)
+    let mainId = localStorage.authId
+    let visitedId = props.match.params.userId
     console.log('Profile was rendered')
 
-    const reloadProfile = () => {
-        let userId = props.match.params.userId
-        if (!userId) {
-            userId = localStorage.authId
-            if (!userId) {
-                props.history.push("/login")
-            }
-        }
-        dispatch(addProfile(userId))
-    }
 
-    useEffect( () => {
-        if (id) dispatch(addProfile(id))
+    useEffect(() => {
+        let id = visitedId
+        if (id) {
+            dispatch(addProfile(id, true))
+        } else {
+            id = mainId
+            if (id && profilePage.mainProfile.info === null) dispatch(addProfile(id))
+        }
     }, [])
 
-    if (!id) return <Redirect to={'/login'}/>
+    if (!mainId) return <Redirect to={'/login'}/>
 
     return (
         <div>
@@ -44,16 +39,25 @@ const Profile = (props) => {
                         <div className={s.leftColumnItem}>
                             <div className={s.avatarWrapper}>
                                 <div className={s.avatar}>
-                                    <img src={profile === null ? "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294" : profile.photos.large} alt="https://via.placeholder.com/600/92c952"/>
+                                    {visitedId
+                                        ? <img
+                                            src={profilePage.visitedProfile.info === null ? "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294" : profilePage.visitedProfile.info.photos.large}
+                                            alt="https://via.placeholder.com/600/92c952"/>
+                                        : <img
+                                            src={profilePage.mainProfile.info === null ? "https://www.sentara.com/Assets/Img/Common/Default/placeholder-doctor.svg?width=294" : profilePage.mainProfile.info.photos.large}
+                                            alt="https://via.placeholder.com/600/92c952"/>
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className={s.rightColumn}>
                         <div className={s.rightColumnItem}>
-                            <ProfileInfo profile={profile} status={status}/>
+                            {visitedId
+                            ? <ProfileInfo currentProfile={profilePage.visitedProfile}/>
+                            : <ProfileInfo currentProfile={profilePage.mainProfile}/>
+                            }
                         </div>
-
                         <div className={s.rightColumnItem}>
                             <Posts/>
                         </div>
