@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../store/thunkCreators";
 import {Redirect} from "react-router-dom";
 import Preloader from "../../MUI/Preloader/Preloader";
+import {comparePasswords, useInput} from "../../utils/validation";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,16 +22,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 let LoginPage = (props) => {
+    console.log('LoginPage was rendered')
+
+    const classes = useStyles()
 
     const dispatch = useDispatch()
     const waiting = useSelector(state => state.authorization.waiting)
 
-    let [loginInput, setLoginInput] = useState('')
-    let [passwordInput, setPasswordInput] = useState('')
-
-    const classes = useStyles()
-
-    console.log('LoginPage was rendered')
+    let loginInput = useInput('', {isEmpty: true, minLength: 6, maxLength: 20, ownSpaces: true})
+    let passwordInput = useInput('', {isEmpty: true, minLength: 6, maxLength: 20, ownSpaces: true})
 
     if (localStorage.authId) return <Redirect to={'/profile'}/>
 
@@ -39,18 +39,26 @@ let LoginPage = (props) => {
             {waiting
                 ? <Preloader/>
                 : <div className={s.formWrap}>
-                    <TextField onChange={(event) => setLoginInput(event.target.value)} value={loginInput}
-                               fullWidth={true}
-                               color="primary" label="Write your username" variant="filled"/>
-                    <TextField onChange={(event) => setPasswordInput(event.target.value)} value={passwordInput}
-                               fullWidth={true} type="password"
-                               color="primary" label="Write your password" variant="filled" className={classes.root}/>
-                    <Button onClick={() => dispatch(login(loginInput, passwordInput))} variant="contained"
-                            className={classes.root} color="primary" fullWidth={true}>Login</Button>
+                    {(loginInput.isDirty && loginInput.minLengthError) && <div style={{color: 'red'}}>Недостаточно символов</div>}
+                    {(loginInput.isDirty && loginInput.maxLengthError) && <div style={{color: 'red'}}>Слишком много символов</div>}
+                    {(loginInput.isDirty && loginInput.isEmpty) && <div style={{color: 'red'}}>Поле не должно быть пустым</div>}
+                    {(loginInput.isDirty && loginInput.spaces) && <div style={{color: 'red'}}>Присутствуют пробелы</div>}
+                    <TextField onChange={(event) => loginInput.onChange(event)} value={loginInput.value}
+                               fullWidth={true} onBlur={e => loginInput.onBlur(e)}
+                               color={(loginInput.isDirty && loginInput.commonError)? "secondary" : "primary"} label="Write your username" variant="filled"/>
+
+                    {(passwordInput.isDirty && passwordInput.minLengthError) && <div style={{color: 'red'}}>Недостаточно символов</div>}
+                    {(passwordInput.isDirty && passwordInput.maxLengthError) && <div style={{color: 'red'}}>Слишком много символов</div>}
+                    {(passwordInput.isDirty && passwordInput.isEmpty) && <div style={{color: 'red'}}>Поле не должно быть пустым</div>}
+                    {(passwordInput.isDirty && passwordInput.spaces) && <div style={{color: 'red'}}>Присутствуют пробелы</div>}
+                    <TextField onChange={(event) => passwordInput.onChange(event)} value={passwordInput.value}
+                               fullWidth={true} type="password" onBlur={e => passwordInput.onBlur(e)}
+                               color={(passwordInput.isDirty && passwordInput.commonError)? "secondary" : "primary"} label="Write your password" variant="filled" className={classes.root}/>
+                    <Button onClick={() => dispatch(login(loginInput.value, passwordInput.value))} variant="contained"
+                            className={classes.root} disabled={passwordInput.commonError || loginInput.commonError} color="primary" fullWidth={true}>Login</Button>
                 </div>}
         </div>
     )
-
 }
 
 export default LoginPage

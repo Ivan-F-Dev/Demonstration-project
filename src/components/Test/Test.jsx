@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import s from './Test.module.scss';
 import Button from '@material-ui/core/Button';
 import {makeStyles, TextField} from "@material-ui/core";
-import {login} from "../../store/thunkCreators";
+import {comparePasswords, useInput} from "../../utils/validation";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
 
-        '& .MuiOutlinedInput-root': {
+        '& .MuiFilledInput-root': {
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0
         }
@@ -19,45 +19,74 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Test = () => {
-    const [state, setState] = useState('')
-
-    const [nicknameInput, setNicknameInput] = useState('')
-    const [nameInput, setNameInput] = useState('')
-    const [emailInput, setEmailInput] = useState('')
-    const [passwordInput, setPasswordInput] = useState('')
-    const [checkPasswordInput, setCheckPasswordInput] = useState('')
-
     const classes = useStyles()
+
+    const nickname = useInput('', {isEmpty: true, minLength: 6, maxLength: 10, ownSpaces: true})
+    const name = useInput('', {isEmpty: true, minLength: 6, maxLength: 10, ownSpaces: true})
+    const email = useInput('', {isEmpty: true, isEmail: true})
+    const password = useInput('', {isEmpty: true, minLength: 6, maxLength: 10, ownSpaces: true, ownUpperCase: true, ownLowerCase: true, ownNumbers: true})
+    const checkpassword = useInput('', {isEmpty: true, minLength: 6, maxLength: 10,ownSpaces: true, ownUpperCase: true, ownLowerCase: true, ownNumbers: true})
+
+    window.nickname = nickname
 
     return (
         <div className={s.test}>
             Test
-            <div>
-                <Button onClick={() => setState(1)} color={state === 1 ? "primary" : "default"}>Тестовая кнопка1</Button>
-                <Button onClick={() => setState(2)} color={state === 2 ? "primary" : "default"}>Тестовая кнопка2</Button>
-                <Button onClick={() => setState(3)} color={state === 3 ? "primary" : "default"}>Тестовая кнопка3</Button>
-                <Button onClick={() => setState(0)} color={state === 0 ? "primary" : "default"}>Обнуляющая кнопка</Button>
-            </div>
-            <div className={s.form}>
-                <div className={s.formWrap}>
-                    <TextField onChange={(event) => setNicknameInput(event.target.value)} value={nicknameInput}
-                               fullWidth={true} helperText = {nicknameInput && "Рома"}
-                               color="primary" label="Write your nickname" variant="filled"/>
-                    <TextField onChange={(event) => setNameInput(event.target.value)} value={nameInput}
-                               fullWidth={true} helperText = {nameInput && "Пидор"}
-                               color="primary" label="Write your name" variant="filled" className={classes.root}/>
-                    <TextField onChange={(event) => setEmailInput(event.target.value)} value={emailInput}
-                               fullWidth={true} helperText = {emailInput && "Нашел"}
-                               color="primary" label="Write your email" variant="filled" className={classes.root}/>
-                    <TextField onChange={(event) => setPasswordInput(event.target.value)} value={passwordInput}
-                               fullWidth={true} type={passwordInput && "password"} helperText = {passwordInput && "Пасхалку"}
-                               color="primary" label="Write your password" variant="filled" className={classes.root}/>
-                    <TextField onChange={(event) => setCheckPasswordInput(event.target.value)} value={checkPasswordInput}
-                               fullWidth={true} type={passwordInput && "password"} helperText = {checkPasswordInput && "P.S. ИдиНаХуй"}
-                               color="primary" label="Write your password" variant="filled" className={classes.root}/>
-                    <Button  variant="contained" className={classes.root} color="primary" fullWidth={true}>Login</Button>
+            <form action="">
+                <div className={s.form}>
+                    <div className={s.formWrap}>
+                        {(nickname.isDirty && nickname.minLengthError) && <div className={s.error}>Недостаточно символов</div>}
+                        {(nickname.isDirty && nickname.maxLengthError) && <div className={s.error}>Слишком много символов</div>}
+                        {(nickname.isDirty && nickname.isEmpty) && <div className={s.error}>Поле не должно быть пустым</div>}
+                        {(nickname.isDirty && nickname.spaces) && <div className={s.error}>Присутствуют пробелы</div>}
+                        <TextField onChange={e => nickname.onChange(e)} value={nickname.value}
+                                   onBlur={e => nickname.onBlur(e)}
+                                   fullWidth={true}
+                                   color={(nickname.isDirty && nickname.commonError)? "secondary" : "primary"} label="Write your nickname" variant="filled"/>
+
+                        {(name.isDirty && name.minLengthError) && <div className={s.error}>Недостаточно символов</div>}
+                        {(name.isDirty && name.maxLengthError) && <div className={s.error}>Слишком много символов</div>}
+                        {(name.isDirty && name.isEmpty) && <div className={s.error}>Поле не должно быть пустым</div>}
+                        {(name.isDirty && name.spaces) && <div className={s.error}>Присутствуют пробелы</div>}
+                        <TextField onChange={e => name.onChange(e)} value={name.value} onBlur={e => name.onBlur(e)}
+                                   fullWidth={true}
+                                   color={(name.isDirty && name.commonError)? "secondary" : "primary"} label="Write your name" variant="filled" className={classes.root}/>
+
+                        {(email.isDirty && email.emailError) && <div className={s.error}>Некорректный Email</div>}
+                        {(email.isDirty && email.isEmpty) && <div className={s.error}>Поле не должно быть пустым</div>}
+                        <TextField onChange={e => email.onChange(e)} value={email.value} onBlur={e => email.onBlur(e)}
+                                   fullWidth={true}
+                                   color={(email.isDirty && email.commonError)? "secondary" : "primary"} label="Write your email" variant="filled" className={classes.root}/>
+
+                        {(password.isDirty && password.minLengthError) && <div className={s.error}>Недостаточно символов</div>}
+                        {(password.isDirty && password.maxLengthError) && <div className={s.error}>Слишком много символов</div>}
+                        {(password.isDirty && password.isEmpty) && <div className={s.error}>Поле не должно быть пустым</div>}
+                        {(password.isDirty && password.spaces) && <div className={s.error}>Присутствуют пробелы</div>}
+                        {(password.isDirty && !password.numbers) && <div className={s.error}>Нет ни одной цифры</div>}
+                        {(password.isDirty && !password.upperCase) && <div className={s.error}>Нет ни одной заглавной буквы</div>}
+                        {(password.isDirty && !password.lowerCase) && <div className={s.error}>Нет ни одной строчной буквы</div>}
+                        <TextField onChange={e => password.onChange(e)} value={password.value}
+                                   onBlur={e => password.onBlur(e)}
+                                   fullWidth={true} type={password && "password"}
+                                   color={(password.isDirty && password.commonError)? "secondary" : "primary"} label="Write your password" variant="filled" className={classes.root}/>
+
+                        {(checkpassword.isDirty && checkpassword.minLengthError) && <div className={s.error}>Недостаточно символов</div>}
+                        {(checkpassword.isDirty && checkpassword.maxLengthError) && <div className={s.error}>Слишком много символов</div>}
+                        {(checkpassword.isDirty && checkpassword.isEmpty) && <div className={s.error}>Поле не должно быть пустым</div>}
+                        {(checkpassword.isDirty && checkpassword.spaces) && <div className={s.error}>Присутствуют пробелы</div>}
+                        {(checkpassword.isDirty && !checkpassword.numbers) && <div className={s.error}>Нет ни одной цифры</div>}
+                        {(checkpassword.isDirty && !checkpassword.upperCase) && <div className={s.error}>Нет ни одной заглавной буквы</div>}
+                        {(checkpassword.isDirty && !checkpassword.lowerCase) && <div className={s.error}>Нет ни одной строчной буквы</div>}
+                        <TextField onChange={e => checkpassword.onChange(e)} value={checkpassword.value}
+                                   onBlur={e => checkpassword.onBlur(e)}
+                                   fullWidth={true} type={checkpassword.value && "password"}
+                                   color={(checkpassword.isDirty && checkpassword.commonError)? "secondary" : "primary"} label="Write your password for verification" variant="filled" className={classes.root}/>
+
+                        {!(comparePasswords(checkpassword.value, password.value)) && <div className={s.error}>Пароли не совпадают</div>}
+                        <Button disabled={!(comparePasswords(checkpassword.value, password.value)) || nickname.commonError || name.commonError || email.commonError || password.commonError || checkpassword.commonError} variant="contained" className={classes.root} color="primary" fullWidth={true}>Login</Button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }
