@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addUsers} from "../../store/thunkCreators";
 import Preloader from "../../MUI/Preloader/Preloader";
 import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
+import {Redirect} from "react-router-dom";
 
 
 const FindUsers = (props) => {
@@ -18,6 +19,9 @@ const FindUsers = (props) => {
         dispatch(addUsers(count, page))
     }
 
+    let mainId = sessionStorage.authId
+    if (!mainId) return <Redirect to={'/login'}/>
+
     return (
         <div>
             <div className={s.findUsers}>
@@ -26,13 +30,13 @@ const FindUsers = (props) => {
                     {waiting ? <Preloader/> : <ItemsContainer friend={false} items={usersState.users}/>}
                 </div>
                 <div className={s.subPaginator}>
-                    <button onClick={ () => {
+                    {/*<button onClick={ () => {
                         console.log(props.match.param)
                     }}><ArrowBackIos color="primary"/></button>
                     <div></div>
                     <button onClick={ () => {
                         console.log(props.match.param)
-                    }}><ArrowForwardIos color="primary"/></button>
+                    }}><ArrowForwardIos color="primary"/></button>*/}
                 </div>
             </div>
         </div>

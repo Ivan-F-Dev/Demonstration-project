@@ -26,7 +26,7 @@ const Paginator = ({request, totalNumber}) => {
         <div className={s.paginator}>
 
             <div className={s.arrowItem}>
-                <button><ArrowBackIos color="primary"/></button>
+                {/*<button><ArrowBackIos color="primary"/></button>*/}
             </div>
             <div className={s.centralItem}>
                 <div className={s.subCentralItem}>
@@ -44,7 +44,6 @@ const Paginator = ({request, totalNumber}) => {
                             style: {borderTopRightRadius: '0px', borderBottomRightRadius: '0px'}
                         }}/>
                         <TextField classes={{root: classes.root}} value={page} onChange={(e) => setPage(e.target.value)}
-                                   type="text"
                                    id="outlined-number" label="Page" type="number" variant="outlined"
                                    InputLabelProps={{shrink: true,}} InputProps={{
                             margin: 'dense',
@@ -59,7 +58,7 @@ const Paginator = ({request, totalNumber}) => {
 
             </div>
             <div className={s.arrowItem}>
-                <button><ArrowForwardIos color="primary"/></button>
+                {/*<button><ArrowForwardIos color="primary"/></button>*/}
             </div>
         </div>
     )

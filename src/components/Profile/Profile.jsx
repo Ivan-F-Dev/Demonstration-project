@@ -13,7 +13,7 @@ const Profile = (props) => {
     const waiting = useSelector(state => state.authorization.waiting)
     const profilePage = useSelector(state => state.profilePage)
 
-    let mainId = localStorage.authId
+    let mainId = sessionStorage.authId
     let visitedId = props.match.params.userId
     console.log('Profile was rendered')
 
@@ -26,7 +26,7 @@ const Profile = (props) => {
             id = mainId
             if (id && profilePage.mainProfile.info === null) dispatch(addProfile(id))
         }
-    }, [])
+    }, [mainId, dispatch, profilePage.mainProfile.info, visitedId])
 
     if (!mainId) return <Redirect to={'/login'}/>
 

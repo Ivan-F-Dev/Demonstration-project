@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Demonstration-project/static/css/main.80cde0af.chunk.css",
-    "main.js": "/Demonstration-project/static/js/main.fe06e03e.chunk.js",
-    "main.js.map": "/Demonstration-project/static/js/main.fe06e03e.chunk.js.map",
+    "main.css": "/Demonstration-project/static/css/main.6c1b9be9.chunk.css",
+    "main.js": "/Demonstration-project/static/js/main.dc76d235.chunk.js",
+    "main.js.map": "/Demonstration-project/static/js/main.dc76d235.chunk.js.map",
     "runtime-main.js": "/Demonstration-project/static/js/runtime-main.56a3a3fc.js",
     "runtime-main.js.map": "/Demonstration-project/static/js/runtime-main.56a3a3fc.js.map",
-    "static/js/2.2533fa99.chunk.js": "/Demonstration-project/static/js/2.2533fa99.chunk.js",
-    "static/js/2.2533fa99.chunk.js.map": "/Demonstration-project/static/js/2.2533fa99.chunk.js.map",
+    "static/js/2.3d8edd04.chunk.js": "/Demonstration-project/static/js/2.3d8edd04.chunk.js",
+    "static/js/2.3d8edd04.chunk.js.map": "/Demonstration-project/static/js/2.3d8edd04.chunk.js.map",
     "static/js/3.9f8c3ed1.chunk.js": "/Demonstration-project/static/js/3.9f8c3ed1.chunk.js",
     "static/js/3.9f8c3ed1.chunk.js.map": "/Demonstration-project/static/js/3.9f8c3ed1.chunk.js.map",
     "index.html": "/Demonstration-project/index.html",
-    "static/css/main.80cde0af.chunk.css.map": "/Demonstration-project/static/css/main.80cde0af.chunk.css.map",
-    "static/js/2.2533fa99.chunk.js.LICENSE.txt": "/Demonstration-project/static/js/2.2533fa99.chunk.js.LICENSE.txt",
+    "static/css/main.6c1b9be9.chunk.css.map": "/Demonstration-project/static/css/main.6c1b9be9.chunk.css.map",
+    "static/js/2.3d8edd04.chunk.js.LICENSE.txt": "/Demonstration-project/static/js/2.3d8edd04.chunk.js.LICENSE.txt",
     "static/media/AvatarCat.a11fbce0.jpg": "/Demonstration-project/static/media/AvatarCat.a11fbce0.jpg",
     "static/media/Preloader.09b9671f.svg": "/Demonstration-project/static/media/Preloader.09b9671f.svg",
     "static/media/logo.6ce24c58.svg": "/Demonstration-project/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.56a3a3fc.js",
-    "static/js/2.2533fa99.chunk.js",
-    "static/css/main.80cde0af.chunk.css",
-    "static/js/main.fe06e03e.chunk.js"
+    "static/js/2.3d8edd04.chunk.js",
+    "static/css/main.6c1b9be9.chunk.css",
+    "static/js/main.dc76d235.chunk.js"
   ]
 }

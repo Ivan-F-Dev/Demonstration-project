@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 import s from './LoginPage.module.scss'
 import {Button, makeStyles, TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../store/thunkCreators";
 import {Redirect} from "react-router-dom";
 import Preloader from "../../MUI/Preloader/Preloader";
-import {comparePasswords, useInput} from "../../utils/validation";
+import {useInput} from "../../utils/validation";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,7 +32,7 @@ let LoginPage = (props) => {
     let loginInput = useInput('', {isEmpty: true, minLength: 6, maxLength: 20, ownSpaces: true})
     let passwordInput = useInput('', {isEmpty: true, minLength: 6, maxLength: 20, ownSpaces: true})
 
-    if (localStorage.authId) return <Redirect to={'/profile'}/>
+    if (sessionStorage.authId) return <Redirect to={'/profile'}/>
 
     return (
         <div className={s.loginPage}>

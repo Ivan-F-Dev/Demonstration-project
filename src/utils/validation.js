@@ -67,9 +67,10 @@ const useValidation = (value, validations) => {
                         }
                     }
                     break;
+                default : return
             }
         }
-    }, [value])
+    }, [value, validations])
 
     useEffect(() => {
         if (isEmpty || minLengthError || maxLengthError || emailError

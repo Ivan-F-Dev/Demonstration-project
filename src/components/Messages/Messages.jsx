@@ -25,8 +25,8 @@ let messageItemsMap = messagesState.messageItems.map(el => <MessageItem img={el.
 
 const Messages = () => {
 
-    let id = localStorage.authId
-    if (!id) return <Redirect to={'/login'}/>
+    let mainId = sessionStorage.authId
+    if (!mainId) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.messages}>

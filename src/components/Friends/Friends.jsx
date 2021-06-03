@@ -6,6 +6,7 @@ import Paginator from "../FindUsers/Paginator/Paginator";
 import Preloader from "../../MUI/Preloader/Preloader";
 import ItemsContainer from "../FindUsers/ItemsContainer/ItemsContainer";
 import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
+import {Redirect} from "react-router-dom";
 
 const Friends = (props) => {
 
@@ -17,6 +18,9 @@ const Friends = (props) => {
         dispatch(addFriends(count, page))
     }
 
+    let mainId = sessionStorage.authId
+    if (!mainId) return <Redirect to={'/login'}/>
+
     return (
         <div>
             <div className={s.friends}>
@@ -25,9 +29,9 @@ const Friends = (props) => {
                     {waiting ? <Preloader/> : <ItemsContainer friend={true} items={usersState.friends}/>}
                 </div>
                 <div className={s.subPaginator}>
-                    <button><ArrowBackIos color="primary"/></button>
+                    {/*<button><ArrowBackIos color="primary"/></button>
                     <div></div>
-                    <button><ArrowForwardIos color="primary"/></button>
+                    <button><ArrowForwardIos color="primary"/></button>*/}
                 </div>
             </div>
         </div>

@@ -13,9 +13,9 @@ import {API} from "../api/api";
 export const getMe = () => async dispatch => {
     let response = await API.getMe()
     if (response.resultCode === 0) {
-        localStorage.setItem('authId', response.data.id)
-        localStorage.setItem('authLogin', response.data.login)
-        localStorage.setItem('authEmail',  response.data.email)
+        sessionStorage.setItem('authId', response.data.id)
+        sessionStorage.setItem('authLogin', response.data.login)
+        sessionStorage.setItem('authEmail',  response.data.email)
         dispatch(setIsAuth(true))
         console.log("thunkCreators getMe is ok")
     } else {
@@ -41,9 +41,9 @@ let response = await API.logout()
     if (response.data.resultCode === 0) {
         dispatch(setProfile(null))
         dispatch(setIsAuth(false))
-        localStorage.removeItem('authLogin')
-        localStorage.removeItem('authEmail')
-        localStorage.removeItem('authId')
+        sessionStorage.removeItem('authLogin')
+        sessionStorage.removeItem('authEmail')
+        sessionStorage.removeItem('authId')
         console.log("thunkCreators logout is ok")
     } else {
         console.log("thunkCreators logout is fail")
