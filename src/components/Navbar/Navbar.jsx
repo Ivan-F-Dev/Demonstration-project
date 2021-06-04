@@ -34,8 +34,13 @@ const Navbar = () => {
                 </NavLink>
             </div>
             <div>
+                <NavLink className={s.link} to="/settings">
+                    <Button size="large" className={classes.root} fullWidth={true}  color={linkState === 5 ? "primary" : "default"} onClick={() => setLinkState(5)}>Settings</Button>
+                </NavLink>
+            </div>
+            <div>
                 <NavLink className={s.link} to="/test">
-                    <Button size="large" className={classes.root} fullWidth={true}  color={linkState === 5 ? "primary" : "default"} onClick={() => setLinkState(5)}>Test</Button>
+                    <Button size="large" className={classes.root} fullWidth={true}  color={linkState === 6 ? "primary" : "default"} onClick={() => setLinkState(6)}>Test</Button>
                 </NavLink>
             </div>
         </div>

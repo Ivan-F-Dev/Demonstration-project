@@ -23,18 +23,16 @@ const ProfileInfo = ({currentProfile}) => {
                     ? <button onClick={() => setShowContacts(false)}><ArrowDropDownIcon/></button>
                     : <button onClick={() => setShowContacts(true)}><ArrowRightIcon/></button>}
                 </div>
-                {showContacts
-                    ? <div>
-                        <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.github}</div>
-                        <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.vk}</div>
-                        <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.facebook}</div>
-                        <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.instagram}</div>
-                        <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.twitter}</div>
-                        <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.website}</div>
-                        <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.youtube}</div>
-                        <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.mainLink}</div>
-                    </div>
-                    : <div></div>}
+                <div  style={showContacts? {display: 'block'} : {display: 'none'}}>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.github}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.vk}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.facebook}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.instagram}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.twitter}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.website}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.youtube}</div>
+                    <div>{!currentProfile.info ? '...' : currentProfile.info.contacts.mainLink}</div>
+                </div>
             </div>
         </div>
     )

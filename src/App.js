@@ -9,6 +9,7 @@ import Friends from "./components/Friends/Friends";
 import FindUsers from "./components/FindUsers/FindUsers";
 import Profile from "./components/Profile/Profile";
 import LoginPage from "./components/LoginPage/LoginPage";
+import Settings from "./components/Settings/Settings";
 
 const App = () => (
     <div className={s.App}>
@@ -29,6 +30,7 @@ const App = () => (
                 <Route path="/messages" component={Messages}/>
                 <Route path="/friends" component={Friends}/>
                 <Route path="/findUsers" component={FindUsers}/>
+                <Route path="/settings" component={Settings}/>
                 <Route path="/test" component={Test}/>
             </div>
         </div>

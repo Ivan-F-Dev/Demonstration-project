@@ -17,7 +17,6 @@ const Profile = (props) => {
     let visitedId = props.match.params.userId
     console.log('Profile was rendered')
 
-
     useEffect(() => {
         let id = visitedId
         if (id) {
@@ -26,7 +25,7 @@ const Profile = (props) => {
             id = mainId
             if (id && profilePage.mainProfile.info === null) dispatch(addProfile(id))
         }
-    }, [mainId, dispatch, profilePage.mainProfile.info, visitedId])
+    }, [])
 
     if (!mainId) return <Redirect to={'/login'}/>
 

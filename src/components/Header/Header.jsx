@@ -25,7 +25,6 @@ const Header = () => {
     const profile = useSelector(state => state.profilePage.mainProfile.info)
     const isAuth = useSelector(state => state.authorization.isAuth)
 
-
     console.log('Header was rendered')
 
     return <div className={s.header}>
@@ -41,7 +40,8 @@ const Header = () => {
         </div>
         <div className={s.rightHeaderPart}>
             <div className={s.name}><NavLink className={s.link} to="/profile"><Button
-                className={classes.root}>IVAN</Button></NavLink></div>
+                /*className={classes.root}>IVAN</Button></NavLink></div>*/
+                className={classes.root}>{profile === null ? 'need auth' : profile.fullName.toUpperCase()}</Button></NavLink></div>
             <div className={s.photoWrapper}>
                 <Avatar alt="" src={profile === null ? '' : profile.photos.large} className={classes.large}/>
             </div>
