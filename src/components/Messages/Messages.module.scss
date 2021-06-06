@@ -2,33 +2,34 @@
 
 .messages {
   width: 99%;
-  display: grid;
-  grid-template-columns: 4fr 6fr;
+  display: flex;
+
 
   .availableChats + .currentChat {
     margin-left: 20px;
   }
 
   .availableChats {
+    width: 40%;
     background-color: white;
     border-radius: 5px;
   }
 
   .currentChat {
+    width: 60%;
     background-color: white;
-    border: #5181b8 solid 1px;
     border-radius: 5px;
     overflow: hidden;
-    display: grid;
-    grid-template-rows: 1fr 9fr 2fr;
+    display: flex;
+    flex-direction: column;
 
     .chatHeader {
 
     }
     .chatContent {
-      border-top: #5181b8 solid 1px;
-      border-bottom: #5181b8 solid 1px;
-
+      height: 70vh;
+      border-top: $myBlue solid 1px;
+      padding: 0 10px;
     }
     .chatInput {
 

@@ -1,47 +1,32 @@
 @import "../../../defaultStyles";
 
-.MessageItem {
-display: flex;
-  border: 1px solid $myBlue;
-  border-radius: 5px;
+.messageItem {
+  padding: 4px;
+  display: flex;
+
   & + & {
     margin-top: 20px;
   }
 }
 
-
-.imgArea {
-  padding: 3px;
-display: flex;
-  align-items: center;
-  .imgWrapper {
-    height: 60px;
-    width: 60px;
-    position: relative;
-
-
-    .img {
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      object-fit: cover;
-      top: 0;
-      left: 0;
-      border: 1px solid $myBlue;
-      border-radius: 50%;
-    }
-  }
+.messageHeader + .messageContent {
+  margin-left: 20px;
 }
 
-.MessageItemContent {
+.messageHeader {
+  display: flex;
+  align-items: center;
+}
+
+.messageContent {
   width: 100%;
-  display: grid;
-  grid-template-rows: 1fr 2fr;
 
   .name {
-    padding: 2px;
+    max-height: 30px;
+    border-bottom: $myBlue 1px solid;
   }
+
   .text {
-    padding: 2px;
+
   }
 }

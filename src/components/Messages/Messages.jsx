@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import s from './Messages.module.scss';
-import MessageItem from "./MessageItem/MessageItem";
+import DialogItem from "./DialogItem/DialogItem";
 import AvatarCat from "../../img/AvatarCat.jpg";
 import ChatHeader from "./ChatHeader/ChatHeader";
 import {Redirect} from "react-router-dom";
+import {Button, makeStyles, TextField} from "@material-ui/core";
+import {addPost} from "../../store/actionCreators";
+import {useDispatch, useSelector} from "react-redux";
+import MessageItem from "./MessageItem/MessageItem";
 
 const messagesState = {
     messageItems: [
@@ -11,8 +15,6 @@ const messagesState = {
         {img: AvatarCat, name: "Ivan2", content: "blablablabla2", id: "2"},
         {img: AvatarCat, name: "Ivan3", content: "blablablabla3", id: "3"},
         {img: AvatarCat, name: "Ivan4", content: "blablablabla4", id: "4"},
-        {img: AvatarCat, name: "Ivan5", content: "blablablabla5", id: "5"},
-        {img: AvatarCat, name: "Ivan6", content: "blablablabla6", id: "6"},
     ],
     chatHeader: {
         img: AvatarCat,
@@ -20,31 +22,61 @@ const messagesState = {
     }
 }
 
-let messageItemsMap = messagesState.messageItems.map(el => <MessageItem img={el.img} name={el.name} content={el.content}
+const useStyles = makeStyles((theme) => ({
+    rootButton: {
+        display: "flex",
+        justifyContent: "center",
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0
+    },
+}));
+
+let DialogItemsMap = messagesState.messageItems.map(el => <DialogItem img={el.img} name={el.name} content={el.content}
                                                                         key={el.id}/>)
 
 const Messages = () => {
 
+    const classes = useStyles()
+
+    const [textFieldValue, setTextFieldValue] = useState('')
+    const dispatch = useDispatch()
+    const profile = useSelector(state => state.profilePage.mainProfile)
+
     let mainId = sessionStorage.authId
+
+    const callAddMessage = () => {
+        textFieldValue && dispatch(addPost(textFieldValue))
+        setTextFieldValue("")
+    }
+
     if (!mainId) return <Redirect to={'/login'}/>
 
     return (
         <div className={s.messages}>
             <div className={s.availableChats}>
-                {messageItemsMap}
+                {DialogItemsMap}
             </div>
             <div className={s.currentChat}>
                 <div className={s.chatHeader}>
-                    <ChatHeader img={messagesState.chatHeader.img} name={messagesState.chatHeader.name}/>
+
+                    <ChatHeader profile={profile}/>
                 </div>
-                <div className={s.chatContent}>Content</div>
-                <div className={s.chatInput}>Input</div>
+                <div className={s.chatContent}>
+                    Content
+                    <MessageItem profile={profile}/>
+                </div>
+                <div className={s.chatInput}>
+                    <TextField onChange={(event) => setTextFieldValue(event.target.value)} value={textFieldValue} fullWidth={true}
+                                                        color="primary" label="Write a new message" variant="filled" InputProps={{
+                        margin: 'dense',
+                        style: {borderTopRightRadius: '0px', borderTopLeftRadius: '0px'}
+                    }}/>
+                    <Button onClick={callAddMessage} variant="contained" className={classes.rootButton} color="primary"
+                            fullWidth={true}>Send message</Button>
+                </div>
             </div>
         </div>
     )
-
-
 }
-
 
 export default Messages;

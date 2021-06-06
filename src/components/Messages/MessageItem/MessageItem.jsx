@@ -1,25 +1,29 @@
 import React from 'react'
 import s from './MessageItem.module.scss';
+import Avatar from "@material-ui/core/Avatar";
+
 
 const MessageItem = (props) => {
+
+
     return (
-        <div className={s.MessageItem}>
-            <div className={s.imgArea}>
+        <div className={s.messageItem}>
+            <div className={s.messageHeader}>
                 <div className={s.imgWrapper}>
-                    <img src={props.img} className={s.img} alt="фото собеседника"/>
+                    <Avatar alt=""
+                            src={props.profile.info !== null && props.profile.info.photos.large}/>
                 </div>
             </div>
-            <div className={s.MessageItemContent}>
+            <div className={s.messageContent}>
                 <div className={s.name}>
-                    {props.name}
+                    {props.profile.info === null ? 'name' : props.profile.info.fullName}
                 </div>
                 <div className={s.text}>
-                    {props.content}
+                    content
                 </div>
             </div>
         </div>
     )
 }
-
 
 export default MessageItem;

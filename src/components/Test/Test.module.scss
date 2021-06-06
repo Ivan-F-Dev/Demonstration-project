@@ -13,15 +13,27 @@
       align-items: center;
       width: 60%;
       padding-top: 30px;
-
-      .error {
-        color: #f44336;
-      }
     }
   }
 }
 
+.errorWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 
+  .error + .error {
+    margin-left: 20px;
+  }
+
+  .error {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #f44336;
+  }
+
+}
 
 
 

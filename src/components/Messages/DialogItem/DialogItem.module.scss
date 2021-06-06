@@ -1,0 +1,47 @@
+@import "../../../defaultStyles";
+
+.MessageItem {
+display: flex;
+  border: 1px solid $myBlue;
+  border-radius: 5px;
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+
+.imgArea {
+  padding: 3px;
+display: flex;
+  align-items: center;
+  .imgWrapper {
+    height: 60px;
+    width: 60px;
+    position: relative;
+
+
+    .img {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+      border: 1px solid $myBlue;
+      border-radius: 50%;
+    }
+  }
+}
+
+.MessageItemContent {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+
+  .name {
+    padding: 2px;
+  }
+  .text {
+    padding: 2px;
+  }
+}
