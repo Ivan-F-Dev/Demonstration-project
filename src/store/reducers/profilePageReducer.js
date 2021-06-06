@@ -36,7 +36,7 @@ export let profileReducer = (state = initialState, action) => {
                 }
             } else {
                 return {
-                    ...state, mainProfile: {...state.mainProfile, status: status}
+                    ...state, mainProfile: {...state.mainProfile, status: status, info: {...state.mainProfile.info}}
                 }
             }
 

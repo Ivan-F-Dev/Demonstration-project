@@ -80,6 +80,20 @@ export const saveProfile = (id, obj) => async dispatch => {
     dispatch(waitingOff())
 }
 
+export const saveStatus = (id, status) => async dispatch => {
+    dispatch(waitingOn())
+    let save = await API.saveStatus(status)
+    let response = await API.getStatus(id)
+    if (response.status === 200 && save.status === 200) {
+        dispatch(setStatus(response.data))
+
+        console.log("thunkCreators saveStatus is ok")
+    } else {
+        console.log("thunkCreators saveStatus is fail")
+    }
+    dispatch(waitingOff())
+}
+
 export const addUsers = (count, page) => async dispatch => {
     dispatch(waitingOn())
     let response = await API.getUsers(count, page)
@@ -92,6 +106,7 @@ export const addUsers = (count, page) => async dispatch => {
     }
     dispatch(waitingOff())
 }
+
 export const addFriends = (count, page, friend = true) => async dispatch => {
     dispatch(waitingOn())
     let response = await API.getUsers(count, page, friend)
@@ -104,6 +119,7 @@ export const addFriends = (count, page, friend = true) => async dispatch => {
     }
     dispatch(waitingOff())
 }
+
 export const sendFollow = (userId, isFriend = false) => async dispatch => {
     dispatch(waitingOn())
     let response = await API.follow(userId)

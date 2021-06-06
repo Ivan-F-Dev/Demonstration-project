@@ -30,7 +30,7 @@ let LoginPage = (props) => {
     const waiting = useSelector(state => state.authorization.waiting)
 
     let loginInput = useInput('', {isEmpty: true, minLength: 6, maxLength: 20, ownSpaces: true})
-    let passwordInput = useInput('', {isEmpty: true, minLength: 6, maxLength: 20, ownSpaces: true})
+    let passwordInput = useInput('', {isEmpty: true, minLength: 4, maxLength: 20, ownSpaces: true})
 
     if (sessionStorage.authId) return <Redirect to={'/profile'}/>
 
