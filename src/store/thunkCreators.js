@@ -80,6 +80,20 @@ export const saveProfile = (id, obj) => async dispatch => {
     dispatch(waitingOff())
 }
 
+export const saveProfilePhoto = (id, photo) => async dispatch => {
+    dispatch(waitingOn())
+    let save = await API.savePhoto(photo)
+    let response = await API.getProfile(id)
+    if (response.status === 200 && save.status === 200) {
+        dispatch(setProfile(response.data))
+
+        console.log("thunkCreators saveProfile is ok")
+    } else {
+        console.log("thunkCreators saveProfile is fail")
+    }
+    dispatch(waitingOff())
+}
+
 export const saveStatus = (id, status) => async dispatch => {
     dispatch(waitingOn())
     let save = await API.saveStatus(status)
