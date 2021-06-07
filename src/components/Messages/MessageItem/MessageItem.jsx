@@ -19,7 +19,7 @@ const MessageItem = (props) => {
                     {props.profile.info === null ? 'name' : props.profile.info.fullName}
                 </div>
                 <div className={s.text}>
-                    content
+                    {props.content}
                 </div>
             </div>
         </div>

@@ -1,5 +1,7 @@
 // ACTION TYPES
 import {
+    ADD_INFO,
+    ADD_MESSAGE,
     ADD_POST,
     SET_FOLLOWED, SET_FOLLOWED_FRIEND, SET_FRIENDS,
     SET_IS_AUTH,
@@ -29,4 +31,6 @@ export const setTotalNumberFriends = (payload) => ({type: SET_TOTAL_NUMBER_FRIEN
 export const setFriends = (payload) => ({type: SET_FRIENDS, payload})
 export const setFollowed = (userId, follow ) => ({type: SET_FOLLOWED, userId, follow})
 export const setFollowedFriend = (userId, follow ) => ({type: SET_FOLLOWED_FRIEND, userId, follow})
-
+//messagesReducer
+export const addMessage = (payload) => ({type: ADD_MESSAGE, payload});
+export const addInfo = (payload) => ({type: ADD_INFO, payload});

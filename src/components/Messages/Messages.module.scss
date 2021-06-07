@@ -10,12 +10,15 @@
   }
 
   .availableChats {
+    max-height: 88vh;
     width: 40%;
-    background-color: white;
+    background-color: $myGray;
     border-radius: 5px;
+    overflow: auto;
   }
 
   .currentChat {
+    max-height: 88vh;
     width: 60%;
     background-color: white;
     border-radius: 5px;
@@ -35,4 +38,40 @@
 
     }
   }
+}
+
+::-webkit-scrollbar-button {
+  background-image:url('');
+  background-repeat:no-repeat;
+  width:5px;
+  height:0px
+}
+
+::-webkit-scrollbar-track {
+  background-color:$myGray
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background-color:$myWhite;
+  box-shadow:0px 1px 1px #fff inset;
+  background-image:url('https://yraaa.ru/_pu/24/59610063.png');
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background-color:$myBlue;
+}
+
+::-webkit-resizer{
+  background-image:url('');
+  background-repeat:no-repeat;
+  width:4px;
+  height:0px
+}
+
+::-webkit-scrollbar{
+  width: 8px;
 }

@@ -15,7 +15,9 @@ export const SET_TOTAL_NUMBER_FRIENDS = "SET_TOTAL_NUMBER_FRIENDS"
 export const SET_FRIENDS = "SET_FRIENDS"
 export const SET_FOLLOWED = "SET_FOLLOWED"
 export const SET_FOLLOWED_FRIEND = "SET_FOLLOWED_FRIEND"
-//
+//messagesReducer
+export const ADD_MESSAGE = "ADD_MESSAGE"
+export const ADD_INFO = "ADD_INFO"
 
 
 

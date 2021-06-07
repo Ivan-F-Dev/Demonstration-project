@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from './FindUsers.module.scss';
 import Paginator from "./Paginator/Paginator";
 import ItemsContainer from "./ItemsContainer/ItemsContainer";
 import {useDispatch, useSelector} from "react-redux";
-import {addUsers} from "../../store/thunkCreators";
+import {addProfile, addUsers} from "../../store/thunkCreators";
 import Preloader from "../../MUI/Preloader/Preloader";
 import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
 import {Redirect} from "react-router-dom";
@@ -13,6 +13,7 @@ const FindUsers = (props) => {
 
     const dispatch = useDispatch()
     const usersState = useSelector(state => state.findUsersPage)
+    const profileInfo = useSelector(state => state.profilePage.mainProfile.info)
     const waiting = useSelector(state => state.authorization.waiting)
 
     let request = (count, page) => {
@@ -20,6 +21,20 @@ const FindUsers = (props) => {
     }
 
     let mainId = sessionStorage.authId
+
+    let visitedId = props.match.params.userId
+    console.log('FindUsers was rendered')
+
+    useEffect(() => {
+        let id = visitedId
+        if (id) {
+            dispatch(addProfile(id, true))
+        } else {
+            id = mainId
+            if (id && profileInfo === null) dispatch(addProfile(id))
+        }
+    }, [])
+
     if (!mainId) return <Redirect to={'/login'}/>
 
     return (

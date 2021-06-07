@@ -1,7 +1,7 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import s from './Friends.module.scss';
 import {useDispatch, useSelector} from "react-redux";
-import {addFriends} from "../../store/thunkCreators";
+import {addFriends, addProfile} from "../../store/thunkCreators";
 import Paginator from "../FindUsers/Paginator/Paginator";
 import Preloader from "../../MUI/Preloader/Preloader";
 import ItemsContainer from "../FindUsers/ItemsContainer/ItemsContainer";
@@ -19,6 +19,23 @@ const Friends = (props) => {
     }
 
     let mainId = sessionStorage.authId
+
+
+    const profileInfo = useSelector(state => state.profilePage.mainProfile.info)
+
+    let visitedId = props.match.params.userId
+    console.log('Settings was rendered')
+
+    useEffect(() => {
+        let id = visitedId
+        if (id) {
+            dispatch(addProfile(id, true))
+        } else {
+            id = mainId
+            if (id && profileInfo === null) dispatch(addProfile(id))
+        }
+    }, [])
+
     if (!mainId) return <Redirect to={'/login'}/>
 
     return (
