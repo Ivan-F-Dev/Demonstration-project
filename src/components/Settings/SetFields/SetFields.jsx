@@ -5,16 +5,22 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import {Button, makeStyles} from "@material-ui/core";
 import {saveProfile} from "../../../store/thunkCreators";
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "10px"
-    },
-}));
+import TextField from "@material-ui/core/TextField";
 
 const SetFields = (props) => {
+
+    const useStyles = makeStyles((theme) => ({
+        rootBtn: {
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "10px"
+        },
+        root: {
+            '& .MuiOutlinedInput-input': {
+                padding: "2px"
+            }
+        }
+    }));
 
     const classes = useStyles()
 
@@ -61,21 +67,23 @@ const SetFields = (props) => {
             <div className={s.dataOther}>
                 <div className={s.item}>
                     <div>fullName:</div>
-                    <div><input value={fullName} onChange={(e) => setFullName(e.target.value)} type="text"/></div>
+                    <div><TextField value={fullName} onChange={e => setFullName(e.target.value)} className={classes.root}
+                                     type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                 </div>
                 <div className={s.item}>
                     <div>aboutMe:</div>
-                    <div><input value={aboutMe} onChange={(e) => setAboutMe(e.target.value)} type="text"/></div>
+                    <div><TextField value={aboutMe} onChange={e => setAboutMe(e.target.value)} className={classes.root}
+                                    type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                 </div>
                 <div className={s.item}>
                     <div>lookingForAJob:</div>
-                    <div><input value={lookingForAJob} onChange={(e) => setLookingForAJob(e.target.value)} type="text"/>
-                    </div>
+                    <div><TextField value={lookingForAJob} onChange={e => setLookingForAJob(e.target.value)} className={classes.root}
+                                    type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                 </div>
                 <div className={s.item}>
                     <div>lookingForAJobDescription:</div>
-                    <div><input value={lookingForAJobDescription}
-                                onChange={(e) => setLookingForAJobDescription(e.target.value)} type="text"/></div>
+                    <div><TextField value={lookingForAJobDescription} onChange={e => setLookingForAJobDescription(e.target.value)} className={classes.root}
+                                    type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                 </div>
                 <div style={{display: 'flex'}}>Contacts: {showContacts
                     ? <button className={s.btn} onClick={() => setShowContacts(false)}><ArrowDropDownIcon/></button>
@@ -85,38 +93,46 @@ const SetFields = (props) => {
                 <div>
                     <div className={s.item}>
                         <div>facebook:</div>
-                        <div><input value={facebook} onChange={(e) => setFacebook(e.target.value)} type="text"/></div>
+                        <div><TextField value={facebook} onChange={e => setFacebook(e.target.value)} className={classes.root}
+                                        type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                     </div>
                     <div className={s.item}>
                         <div>website:</div>
-                        <div><input value={website} onChange={(e) => setWebsite(e.target.value)} type="text"/></div>
+                        <div><TextField value={website} onChange={e => setWebsite(e.target.value)} className={classes.root}
+                                        type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                     </div>
                     <div className={s.item}>
                         <div>vk:</div>
-                        <div><input value={vk} onChange={(e) => setVk(e.target.value)} type="text"/></div>
+                        <div><TextField value={vk} onChange={e => setVk(e.target.value)} className={classes.root}
+                                        type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                     </div>
                     <div className={s.item}>
                         <div>twitter:</div>
-                        <div><input value={twitter} onChange={(e) => setTwitter(e.target.value)} type="text"/></div>
+                        <div><TextField value={twitter} onChange={e => setTwitter(e.target.value)} className={classes.root}
+                                        type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                     </div>
                     <div className={s.item}>
                         <div>instagram:</div>
-                        <div><input value={instagram} onChange={(e) => setInstagram(e.target.value)} type="text"/></div>
+                        <div><TextField value={instagram} onChange={e => setInstagram(e.target.value)} className={classes.root}
+                                        type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                     </div>
                     <div className={s.item}>
                         <div>youtube:</div>
-                        <div><input value={youtube} onChange={(e) => setYoutube(e.target.value)} type="text"/></div>
+                        <div><TextField value={youtube} onChange={e => setYoutube(e.target.value)} className={classes.root}
+                                        type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                     </div>
                     <div className={s.item}>
                         <div>github:</div>
-                        <div><input value={github} onChange={(e) => setGithub(e.target.value)} type="text"/></div>
+                        <div><TextField value={github} onChange={e => setGithub(e.target.value)} className={classes.root}
+                                        type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                     </div>
                     <div className={s.item}>
                         <div>mainLink:</div>
-                        <div><input value={mainLink} onChange={(e) => setMainLink(e.target.value)} type="text"/></div>
+                        <div><TextField value={mainLink} onChange={e => setMainLink(e.target.value)} className={classes.root}
+                                        type="text" color="primary" id="outlined-basic"  variant="outlined"/></div>
                     </div>
                 </div>}
-                <Button onClick={() => dispatch(saveProfile(mainId, objPayload))} className={classes.root}
+                <Button onClick={() => dispatch(saveProfile(mainId, objPayload))} className={classes.rootBtn}
                         variant="contained" color="primary" fullWidth={true}>Set</Button>
             </div>
         </div>

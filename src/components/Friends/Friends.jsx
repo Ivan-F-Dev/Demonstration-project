@@ -5,7 +5,7 @@ import {addFriends, addProfile} from "../../store/thunkCreators";
 import Paginator from "../FindUsers/Paginator/Paginator";
 import Preloader from "../../MUI/Preloader/Preloader";
 import ItemsContainer from "../FindUsers/ItemsContainer/ItemsContainer";
-import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
+//import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
 import {Redirect} from "react-router-dom";
 
 const Friends = (props) => {
@@ -34,7 +34,7 @@ const Friends = (props) => {
             id = mainId
             if (id && profileInfo === null) dispatch(addProfile(id))
         }
-    }, [])
+    }, )
 
     if (!mainId) return <Redirect to={'/login'}/>
 

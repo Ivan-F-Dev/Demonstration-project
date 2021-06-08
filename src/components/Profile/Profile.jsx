@@ -7,6 +7,8 @@ import {addProfile, saveProfilePhoto} from "../../store/thunkCreators";
 import Preloader from "../../MUI/Preloader/Preloader";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {Button, makeStyles} from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Input from "@material-ui/core/Input";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,8 +24,6 @@ const Profile = (props) => {
     const waiting = useSelector(state => state.authorization.waiting)
     const profilePage = useSelector(state => state.profilePage)
 
-    const [uploadPhoto, setUploadPhoto] = useState(false)
-
     let mainId = sessionStorage.authId
     let visitedId = props.match.params.userId
     console.log('Profile was rendered')
@@ -31,7 +31,6 @@ const Profile = (props) => {
     const onMainPhotoSelected = (e) => {
         if (e.target.files.length) {
             dispatch(saveProfilePhoto(mainId, e.target.files[0]))
-            setUploadPhoto(false)
         }
     }
 
@@ -68,10 +67,18 @@ const Profile = (props) => {
                             </div>
                         </div>
                         <div className={s.leftColumnItem}>
+                            <label htmlFor="upload-photo">
+                                <input onChange={onMainPhotoSelected} style={{ display: 'none' }} id="upload-photo" name="upload-photo" type="file"/>
+                                <Button className={classes.root} fullWidth={true} color="primary" variant="contained" component="span">
+                                    Upload photo
+                                </Button>
+                            </label>
+                        </div>
+                        {/*<div className={s.leftColumnItem}>
                             <Button onClick={() => setUploadPhoto(!uploadPhoto)} variant="contained" className={classes.root} color="primary"
                                     fullWidth={true}>Upload photo</Button>
                             {uploadPhoto && <input type={"file"} onChange={onMainPhotoSelected}/>}
-                        </div>
+                        </div>*/}
                     </div>
                     <div className={s.rightColumn}>
                         <div className={s.rightColumnItem}>

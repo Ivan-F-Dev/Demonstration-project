@@ -30,13 +30,13 @@ const Messages = (props) => {
     const friends = useSelector(state => state.findUsersPage.friends)
     const currentChat = useSelector(state => state.messagePage.currentChat)
 
-    useEffect(async () => {
+    /*useEffect(async () => {
         if (friends === null) {
             setShowPreloader(true)
             await dispatch(addFriends())
             setShowPreloader(false)
         }
-    })
+    }, [friends, dispatch])*/
 
     const callAddInfo = (info) => {
         dispatch(addInfo(info))
@@ -71,7 +71,12 @@ const Messages = (props) => {
     let visitedId = props.match.params.userId
     console.log('Settings was rendered')
 
-    useEffect(() => {
+    useEffect( () => {
+        if (friends === null) {
+            setShowPreloader(true)
+             dispatch(addFriends())
+            setTimeout( () => setShowPreloader(false), 1000)
+        }
         let id = visitedId
         if (id) {
             dispatch(addProfile(id, true))

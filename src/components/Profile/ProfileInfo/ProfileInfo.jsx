@@ -4,8 +4,19 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import {useDispatch} from "react-redux";
 import {saveStatus} from "../../../store/thunkCreators";
+import TextField from "@material-ui/core/TextField";
+import {makeStyles} from "@material-ui/core";
 
 const ProfileInfo = ({currentProfile}) => {
+
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            '& .MuiOutlinedInput-input': {
+                padding: "2px"
+            }
+        }
+    }));
+    const classes = useStyles()
 
     let mainId = sessionStorage.authId
     let dispatch = useDispatch()
@@ -26,10 +37,11 @@ const ProfileInfo = ({currentProfile}) => {
                 {!editStatus
                     ? <div onDoubleClick={() => setEditStatus(true)} style={{
                         fontWeight: 'bold',
-                        cursor: 'pointer'
+                        cursor: 'pointer',
+                        marginLeft: '3px'
                     }}>{!currentProfile.status ? '...' : currentProfile.status}</div>
-                    : <input onBlur={() => onBlur()} value={inputValue} onChange={e => setInputValue(e.target.value)}
-                             type="text"/>}
+                    : <TextField onBlur={() => onBlur()} value={inputValue} onChange={e => setInputValue(e.target.value)} className={classes.root}
+                                 fullWidth={true} type="text" color="primary" id="outlined-basic"  variant="outlined"/>}
             </div>
             <div className={s.item}>
                 <div>{!currentProfile.info ? '...' : currentProfile.info.userId}</div>

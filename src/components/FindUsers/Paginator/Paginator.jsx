@@ -3,7 +3,7 @@ import s from './Paginator.module.scss';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {makeStyles} from "@material-ui/core";
-import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
+//import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
     root: {

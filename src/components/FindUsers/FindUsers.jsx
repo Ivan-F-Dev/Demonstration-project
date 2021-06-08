@@ -5,9 +5,8 @@ import ItemsContainer from "./ItemsContainer/ItemsContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {addProfile, addUsers} from "../../store/thunkCreators";
 import Preloader from "../../MUI/Preloader/Preloader";
-import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
+//import {ArrowBackIos, ArrowForwardIos} from "@material-ui/icons";
 import {Redirect} from "react-router-dom";
-
 
 const FindUsers = (props) => {
 
@@ -33,7 +32,7 @@ const FindUsers = (props) => {
             id = mainId
             if (id && profileInfo === null) dispatch(addProfile(id))
         }
-    }, [])
+    }, )
 
     if (!mainId) return <Redirect to={'/login'}/>
 

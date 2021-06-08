@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import s from './Settings.module.scss';
+import React, {useEffect} from 'react'
+//import s from './Settings.module.scss';
 import {Redirect} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {addProfile} from "../../store/thunkCreators";
@@ -7,7 +7,6 @@ import Preloader from "../../MUI/Preloader/Preloader";
 import SetFields from "./SetFields/SetFields";
 
 const Settings = (props) => {
-
 
     const mainId = sessionStorage.authId
 
@@ -26,7 +25,7 @@ const Settings = (props) => {
             id = mainId
             if (id && profileInfo === null) dispatch(addProfile(id))
         }
-    }, [])
+    }, )
 
     if (!mainId) return <Redirect to={'/login'}/>
 
