@@ -83,12 +83,12 @@ const Profile = (props) => {
                     <div className={s.rightColumn}>
                         <div className={s.rightColumnItem}>
                             {visitedId
-                                ? <ProfileInfo currentProfile={profilePage.visitedProfile}/>
-                                : <ProfileInfo currentProfile={profilePage.mainProfile}/>
+                                ? <ProfileInfo currentProfile={profilePage.visitedProfile} visitedId={visitedId}/>
+                                : <ProfileInfo currentProfile={profilePage.mainProfile} visitedId={visitedId}/>
                             }
                         </div>
                         <div className={s.rightColumnItem}>
-                            <Posts/>
+                            <Posts visitedId={visitedId}/>
                         </div>
                     </div>
                 </div>

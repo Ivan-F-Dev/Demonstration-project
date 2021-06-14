@@ -95,7 +95,7 @@ export const saveProfilePhoto = (id, photo) => async dispatch => {
 }
 
 export const saveStatus = (id, status) => async dispatch => {
-    dispatch(waitingOn())
+
     let save = await API.saveStatus(status)
     let response = await API.getStatus(id)
     if (response.status === 200 && save.status === 200) {
@@ -105,7 +105,7 @@ export const saveStatus = (id, status) => async dispatch => {
     } else {
         console.log("thunkCreators saveStatus is fail")
     }
-    dispatch(waitingOff())
+
 }
 
 export const addUsers = (count, page) => async dispatch => {

@@ -39,6 +39,11 @@ let LoginPage = (props) => {
             {waiting
                 ? <Preloader/>
                 : <div className={s.formWrap}>
+                    <span>Если вы зашли просто посмотреть, то можно воспользоваться логином и паролем от тестового аккаунта.
+                        Количество http запросов в день на тестовом аккаунте ограничено поэтому есть вероятность того, что он у вас не откроется(((
+                    Если вы все-таки настроены решительно, то напишите мне на hh.ru  я дам вам доступ к своему аккаунту.</span>
+                    <div>Логин: <b>free@samuraijs.com</b></div>
+                    <div>Пароль: <b>free</b></div>
                     {(loginInput.isDirty && loginInput.minLengthError) && <div style={{color: 'red'}}>Недостаточно символов</div>}
                     {(loginInput.isDirty && loginInput.maxLengthError) && <div style={{color: 'red'}}>Слишком много символов</div>}
                     {(loginInput.isDirty && loginInput.isEmpty) && <div style={{color: 'red'}}>Поле не должно быть пустым</div>}

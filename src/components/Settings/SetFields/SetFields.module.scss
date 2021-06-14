@@ -8,6 +8,10 @@
   .dataOther {
     width: 100%;
 
+    .item + .item {
+      padding-top: 5px;
+    }
+
     .item {
       display: flex;
       justify-content: space-between;

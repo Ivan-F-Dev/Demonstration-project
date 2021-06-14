@@ -6,8 +6,9 @@ import {useDispatch} from "react-redux";
 import {saveStatus} from "../../../store/thunkCreators";
 import TextField from "@material-ui/core/TextField";
 import {makeStyles} from "@material-ui/core";
+import PreloaderS from "../../../MUI/PreloaderS/PreloaderS";
 
-const ProfileInfo = ({currentProfile}) => {
+const ProfileInfo = ({currentProfile, visitedId}) => {
 
     const useStyles = makeStyles((theme) => ({
         root: {
@@ -24,24 +25,33 @@ const ProfileInfo = ({currentProfile}) => {
     let [showContacts, setShowContacts] = useState(false)
     let [editStatus, setEditStatus] = useState(false)
     let [inputValue, setInputValue] = useState(currentProfile.status)
+    let [waiting, setWaiting] = useState(false)
 
-    const onBlur = () => {
-        dispatch(saveStatus(mainId, inputValue))
+    const onBlur = async () => {
+        setWaiting(true)
+        await dispatch(saveStatus(mainId, inputValue))
         setEditStatus(false)
+        setWaiting(false)
     }
 
     return (
         <div className={s.profileInfo}>
             <div className={s.item}>
                 <div>{!currentProfile.info ? '...' : currentProfile.info.fullName}</div>
-                {!editStatus
-                    ? <div onDoubleClick={() => setEditStatus(true)} style={{
-                        fontWeight: 'bold',
-                        cursor: 'pointer',
-                        marginLeft: '3px'
-                    }}>{!currentProfile.status ? '...' : currentProfile.status}</div>
-                    : <TextField onBlur={() => onBlur()} value={inputValue} onChange={e => setInputValue(e.target.value)} className={classes.root}
-                                 fullWidth={true} type="text" color="primary" id="outlined-basic"  variant="outlined"/>}
+                {waiting
+                ? <PreloaderS/>
+                : !editStatus
+                ? <div onDoubleClick={() => {
+                    if (!visitedId)
+                        setEditStatus(true)
+                }} style={{
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    marginLeft: '3px'
+                }}>{!currentProfile.status ? '...' : currentProfile.status}</div>
+                : <TextField onBlur={() => onBlur()} value={inputValue} onChange={e => setInputValue(e.target.value)} className={classes.root}
+                             fullWidth={true} type="text" color="primary" id="outlined-basic"  variant="outlined"/>}
+
             </div>
             <div className={s.item}>
                 <div>{!currentProfile.info ? '...' : currentProfile.info.userId}</div>

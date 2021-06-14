@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Posts = (props) => {
+const Posts = ({visitedId}) => {
     const dispatch = useDispatch()
     const posts = useSelector(state => state.profilePage.posts)
     const classes = useStyles()
@@ -39,7 +39,7 @@ const Posts = (props) => {
                         fullWidth={true}>Add post</Button>
             </div>
             <div className={s.postsWrapper}>
-                {mapPosts}
+                {!visitedId && mapPosts}
             </div>
         </div>
     )

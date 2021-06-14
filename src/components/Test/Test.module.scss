@@ -19,17 +19,17 @@
 
 .errorWrap {
   width: 100%;
-  display: flex;
-  justify-content: center;
 
   .error + .error {
-    margin-left: 20px;
+    margin-left: 10px;
   }
 
   .error {
+    display: inline;
+    margin-left: 10px;
     font-weight: 500;
     font-size: 12px;
-    line-height: 16px;
+    line-height: 12px;
     color: #f44336;
   }
 
